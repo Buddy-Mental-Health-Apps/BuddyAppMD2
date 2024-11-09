@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">BuddyApp</string>
+    <string name="title_home">Beranda</string>
+    <string name="title_psikolog">Psikolog</string>
+    <string name="title_story">Jurnal</string>
+    <string name="logout">Keluar</string>
+    <string name="login">Masuk</string>
+    <string name="name">Nama Lengkap</string>
+    <string name="email">Email</string>
+    <string name="password">Kata Sandi</string>
+    <string name="title_login_page">Hi! Masukkan dulu datamu, ya.</string>
+    <string name="register">Daftar</string>
+    <string name="title_register_page">Hi! Silakan lengkapi data dirimu dulu, ya.</string>
+    <string name="greeting">Hi, Melani Faliana Putri!</string>
+    <string name="feeling_ask">Bagaimana suasana hatimu hari ini?</string>
+    <string name="happy">Gembira</string>
+    <string name="soso">Biasa</string>
+    <string name="worry">Gelisah</string>
+    <string name="sad">Sedih</string>
+    <string name="text_button_test">Tes kesehatan mentalmu hari ini, yuk!</string>
+    <string name="button_test">Tes Sekarang</string>
+    <string name="history">Riwayat tes kesehatan mental</string>
+    <string name="search_bar_text">Masukkan daerah asalmu...</string>
+    <string name="psikolog_near">Psikolog terdekat kamu</string>
+    <string name="login_text">Belum punya akun? Daftar sekarang</string>
+    <string name="register_text">Sudah punya akun? Masuk sekarang</string>
+</resources>
