@@ -4,8 +4,19 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/white</item>
         <item name="android:textColorPrimary">@color/blue</item>
-        <item name="android:textColorSecondary">@color/blue</item>
+        <item name="android:textColorSecondary">@color/orange</item>
         <item name="colorOnPrimary">@color/blue</item>
+    </style>
+
+    <style name="TextAppearance.Onboarding.Title" parent="TextAppearance.Material3.HeadlineLarge">
+        <item name="android:textColor">@color/pink</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.Onboarding.Desc" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textColor">@color/pink</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
 </resources>
