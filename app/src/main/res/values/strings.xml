@@ -1,9 +1,13 @@
 <resources>
     <string name="app_name">BuddyApp</string>
+    <string name="slogan">Stay Happy, Your Bestie ALways Steady!</string>
     <string name="title_home">Beranda</string>
     <string name="title_psikolog">Psikolog</string>
     <string name="title_story">Jurnal</string>
     <string name="logout">Keluar</string>
+    <string name="auth_title">Masuk atau Daftar</string>
+    <string name="auth_desc">Supaya Buddy bisa lebih kenal kamu, \nmasuk atau daftar dulu ya!</string>
+    <string name="register_desc">Belum punya akun? Yuk daftar sekarang</string>
     <string name="login">Masuk</string>
     <string name="name">Nama Lengkap</string>
     <string name="email">Email</string>
@@ -20,8 +24,29 @@
     <string name="text_button_test">Tes kesehatan mentalmu hari ini, yuk!</string>
     <string name="button_test">Tes Sekarang</string>
     <string name="history">Riwayat tes kesehatan mental</string>
-    <string name="search_bar_text">Masukkan daerah asalmu...</string>
+    <string name="search_bar_text">Masukkan daerah asalmu…</string>
     <string name="psikolog_near">Psikolog terdekat kamu</string>
     <string name="login_text">Belum punya akun? Daftar sekarang</string>
     <string name="register_text">Sudah punya akun? Masuk sekarang</string>
+    <string name="welcome">Selamat Datang di Buddy!</string>
+    <string name="welcome_desc">Disini kamu bebas berekspresi! Tidak perlu mengkhawatirkan apapun, Buddy akan selalu ada bersama kamu.</string>
+    <string name="test_title">Cek Kesehatan Mental</string>
+    <string name="test_desc">Kamu bisa cek kesehatan mental kamu secara berkala hanya dengan menjawab beberapa pertanyaan saja.</string>
+    <string name="psikolog_title">Temukan Psikolog Terdekat</string>
+    <string name="psikolog_desc">Butuh teman bicara? Buddy akan bantu temukan psikolog terdekat yang siap mendengar dan mendukung kamu!</string>
+    <string name="jurnal_title">Ceritakan Hatimu di Jurnal</string>
+    <string name="jurnal_desc">Tempat yang aman untuk ceritakan isi hatimu. Senang maupun sedih Buddy akan selalu setia bersamamu!</string>
+    <string name="skip">Lewati</string>
+    <string name="next">Selanjutnya</string>
+    <string name="before">Sebelumnya</string>
+    <string name="buddy_halo">Buddy Halo</string>
+    <string name="yuk_mulai">Yuk mulai!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="buddy_dokter">Buddy Dokter</string>
+    <string name="buddy_story">Buddy Story</string>
+    <string name="finish">Selesai</string>
+    <string name="buddy_kenalan">Buddy Kenalan</string>
+    <string name="have_account">Sudah punya akun? Yuk masuk sekarang</string>
+    <string name="make_account">Belum punya akun? Yuk daftar sekarang</string>
 </resources>
