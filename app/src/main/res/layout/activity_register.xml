@@ -15,6 +15,7 @@
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -22,15 +23,14 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline2"
-            app:srcCompat="@drawable/register_img" />
+            app:layout_constraintVertical_bias="0.5"
+            app:srcCompat="@drawable/buddy_register_icon" />
 
         <TextView
             android:id="@+id/titleTextView"
@@ -39,29 +39,25 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
-            android:alpha="0"
             android:text="@string/title_register_page"
-            android:textColor="@color/black"
+            android:textColor="@color/blue"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guidelineHorizontal"
-            tools:alpha="100" />
+            app:layout_constraintTop_toTopOf="@+id/guidelineHorizontal" />
 
         <TextView
             android:id="@+id/nameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
-            android:alpha="0"
+            android:layout_marginTop="16dp"
             android:text="@string/name"
-            android:textColor="@color/black"
+            android:textColor="@color/orange"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titleTextView"
-            tools:alpha="100" />
+            app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/nameEditTextLayout"
@@ -70,12 +66,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
-            android:alpha="0"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nameTextView"
             app:startIconDrawable="@drawable/person_icon"
-            tools:alpha="100">
+            app:boxStrokeColor="@color/grey"
+            app:boxStrokeWidth="1dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ed_register_name"
@@ -90,13 +86,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:alpha="0"
+            android:layout_marginTop="8dp"
             android:text="@string/email"
-            android:textColor="@color/black"
+            android:textColor="@color/orange"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nameEditTextLayout"
-            tools:alpha="100" />
+            app:layout_constraintTop_toBottomOf="@+id/nameEditTextLayout" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/emailEditTextLayout"
@@ -105,12 +99,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
-            android:alpha="0"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/emailTextView"
             app:startIconDrawable="@drawable/email_icon"
-            tools:alpha="100">
+            app:boxStrokeColor="@color/grey"
+            app:boxStrokeWidth="1dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ed_register_email"
@@ -126,12 +120,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
-            android:alpha="0"
             android:text="@string/password"
-            android:textColor="@color/black"
+            android:textColor="@color/orange"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailEditTextLayout"
-            tools:alpha="100" />
+            app:layout_constraintTop_toBottomOf="@+id/emailEditTextLayout" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/passwordEditTextLayout"
@@ -140,13 +132,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
-            android:alpha="0"
             app:endIconMode="password_toggle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/passwordTextView"
             app:startIconDrawable="@drawable/password_icon"
-            tools:alpha="100">
+            app:boxStrokeColor="@color/grey"
+            app:boxStrokeWidth="1dp">
 
             <com.example.buddyapp.authentication.PasswordEditText
                 android:id="@+id/ed_register_password"
@@ -159,32 +151,47 @@
             android:id="@+id/infoTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
             android:layout_marginBottom="8dp"
-            android:alpha="0"
-            android:text="@string/register_text"
+            android:layout_marginStart="0dp"
+            android:text="@string/register_text_start"
+            android:textColor="@color/blue"
+            android:textSize="12sp"
+            android:gravity="center"
+            app:layout_constraintBottom_toTopOf="@id/registerButton"
+            app:layout_constraintEnd_toStartOf="@id/infoTextView2"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/infoTextView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/register_text_end"
             android:textColor="@color/orange"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@id/signupButton"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintBottom_toTopOf="@id/registerButton"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:alpha="100" />
+            app:layout_constraintStart_toEndOf="@id/infoTextView" />
 
         <Button
-            android:id="@+id/signupButton"
+            android:id="@+id/registerButton"
             android:layout_width="0dp"
             android:layout_height="64dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="32dp"
-            android:alpha="0"
             android:backgroundTint="@color/blue"
             android:text="@string/register"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordEditTextLayout"
-            tools:alpha="100" />
+            app:layout_constraintTop_toBottomOf="@+id/passwordEditTextLayout" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineHorizontal"

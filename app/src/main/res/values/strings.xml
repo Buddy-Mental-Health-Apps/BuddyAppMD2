@@ -26,8 +26,10 @@
     <string name="history">Riwayat tes kesehatan mental</string>
     <string name="search_bar_text">Masukkan daerah asalmu…</string>
     <string name="psikolog_near">Psikolog terdekat kamu</string>
-    <string name="login_text">Belum punya akun? Daftar sekarang</string>
-    <string name="register_text">Sudah punya akun? Masuk sekarang</string>
+    <string name="login_text_start">Belum punya akun?   </string>
+    <string name="login_text_end"><u>Daftar sekarang</u></string>
+    <string name="register_text_start">Sudah punya akun?</string>
+    <string name="register_text_end"><u>Masuk sekarang</u></string>
     <string name="welcome">Selamat Datang di Buddy!</string>
     <string name="welcome_desc">Disini kamu bebas berekspresi! Tidak perlu mengkhawatirkan apapun, Buddy akan selalu ada bersama kamu.</string>
     <string name="test_title">Cek Kesehatan Mental</string>
@@ -49,4 +51,20 @@
     <string name="buddy_kenalan">Buddy Kenalan</string>
     <string name="have_account">Sudah punya akun? Yuk masuk sekarang</string>
     <string name="make_account">Belum punya akun? Yuk daftar sekarang</string>
+    <string name="test_number">Soal Nomor 1</string>
+    <string name="test_question">Ketika Anda sedang berada di posisi tertekan, apa yang akan Anda rasakan?</string>
+    <string name="option1">Gelisah</string>
+    <string name="option2">Panik</string>
+    <string name="option3">Biasa saja</string>
+    <string name="option4">Senang</string>
+    <string name="next_button">Selanjutnya</string>
+    <string name="question_ad">Tes kesehatan mental Kamu belum selesai. Tinggalkan tes?</string>
+    <string name="option_yes">Ya</string>
+    <string name="option_back">Kembali</string>
+    <string name="description_ad_register">Yey, Kamu sudah berhasil mendaftar! </string>
+    <string name="option_login_in_register">Masuk</string>
+    <string name="description_ad_data_not_found">Semua kolom harus diisi dengan benar.</string>
+    <string name="option_ok">OK</string>
+    <string name="description_ad_login">Yey, Kamu sudah berhasil masuk! </string>
+    <string name="option_next_in_login">Lanjut</string>
 </resources>
