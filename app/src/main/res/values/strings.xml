@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">BuddyApp</string>
-    <string name="slogan">Stay Happy, Your Bestie ALways Steady!</string>
+    <string name="app_name">Buddy</string>
+    <string name="slogan">Stay Happy, Your Bestie Always Steady!</string>
     <string name="title_home">Beranda</string>
     <string name="title_psikolog">Psikolog</string>
     <string name="title_story">Jurnal</string>
@@ -30,20 +30,6 @@
     <string name="login_text_end"><u>Daftar sekarang</u></string>
     <string name="register_text_start">Sudah punya akun?</string>
     <string name="register_text_end"><u>Masuk sekarang</u></string>
-    <string name="welcome">Selamat Datang di Buddy!</string>
-    <string name="welcome_desc">Disini kamu bebas berekspresi! Tidak perlu mengkhawatirkan apapun, Buddy akan selalu ada bersama kamu.</string>
-    <string name="test_title">Cek Kesehatan Mental</string>
-    <string name="test_desc">Kamu bisa cek kesehatan mental kamu secara berkala hanya dengan menjawab beberapa pertanyaan saja.</string>
-    <string name="psikolog_title">Temukan Psikolog Terdekat</string>
-    <string name="psikolog_desc">Butuh teman bicara? Buddy akan bantu temukan psikolog terdekat yang siap mendengar dan mendukung kamu!</string>
-    <string name="jurnal_title">Ceritakan Hatimu di Jurnal</string>
-    <string name="jurnal_desc">Tempat yang aman untuk ceritakan isi hatimu. Senang maupun sedih Buddy akan selalu setia bersamamu!</string>
-    <string name="skip">Lewati</string>
-    <string name="next">Selanjutnya</string>
-    <string name="before">Sebelumnya</string>
-    <string name="buddy_halo">Buddy Halo</string>
-    <string name="yuk_mulai">Yuk mulai!</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="buddy_dokter">Buddy Dokter</string>
     <string name="buddy_story">Buddy Story</string>
@@ -67,4 +53,5 @@
     <string name="option_ok">OK</string>
     <string name="description_ad_login">Yey, Kamu sudah berhasil masuk! </string>
     <string name="option_next_in_login">Lanjut</string>
+    <string name="empty_image">Pilih gambar untuk jurnal kamu</string>
 </resources>
