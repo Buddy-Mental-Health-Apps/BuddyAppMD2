@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">Buddy</string>
-    <string name="slogan">Stay Happy, Your Bestie Always Steady!</string>
+    <string name="app_name">BuddyApp</string>
+    <string name="slogan">Stay Happy, Your Bestie ALways Steady!</string>
     <string name="title_home">Beranda</string>
     <string name="title_psikolog">Psikolog</string>
     <string name="title_story">Jurnal</string>
@@ -30,7 +30,6 @@
     <string name="login_text_end"><u>Daftar sekarang</u></string>
     <string name="register_text_start">Sudah punya akun?</string>
     <string name="register_text_end"><u>Masuk sekarang</u></string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="buddy_dokter">Buddy Dokter</string>
     <string name="buddy_story">Buddy Story</string>
     <string name="finish">Selesai</string>
@@ -53,5 +52,10 @@
     <string name="option_ok">OK</string>
     <string name="description_ad_login">Yey, Kamu sudah berhasil masuk! </string>
     <string name="option_next_in_login">Lanjut</string>
-    <string name="empty_image">Pilih gambar untuk jurnal kamu</string>
+    <string name="quiz_title">Tes Kesehatan Mental</string>
+    <string name="question_ad_answer_not_found">Tes dapat diselesaikan jika soal sudah terisi semua.</string>
+    <string name="question_ad_delete">Riwayat yang dihapus bersifat permanen, apakah Kamu yakin menghapus riwayat tes ini?</string>
+    <string name="option_delete_yes">Hapus</string>
+    <string name="question_ad_finish_test">Apakah kamu yakin untuk menyelesaikan tes ini?</string>
+
 </resources>

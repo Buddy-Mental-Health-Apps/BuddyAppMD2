@@ -3,11 +3,12 @@ package com.example.buddyapp.ui.quiz
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MenuItem
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.example.buddyapp.MainActivity
 import com.example.buddyapp.R
 
@@ -17,16 +18,18 @@ class QuizActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_quiz)
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
-    }
+        // Set toolbar
+        val toolbar: Toolbar = findViewById(R.id.toolbar_quiz)
+        setSupportActionBar(toolbar)
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == android.R.id.home) {
+        // Remove default title
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+
+        // Handle back button
+        val btnBack: ImageButton = findViewById(R.id.btn_back)
+        btnBack.setOnClickListener {
             showExitDialog()
-            return true
         }
-        return super.onOptionsItemSelected(item)
     }
 
     private fun showExitDialog() {
