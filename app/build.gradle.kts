@@ -68,4 +68,14 @@ dependencies {
 
     // Library uCrop
     implementation(libs.ucrop)
+
+    // Library Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
+
+    // Library DataStore
+    implementation(libs.androidx.datastore.preferences)
+    implementation(libs.androidx.activity.ktx)
+
 }

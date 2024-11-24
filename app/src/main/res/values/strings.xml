@@ -57,5 +57,5 @@
     <string name="question_ad_delete">Riwayat yang dihapus bersifat permanen, apakah Kamu yakin menghapus riwayat tes ini?</string>
     <string name="option_delete_yes">Hapus</string>
     <string name="question_ad_finish_test">Apakah kamu yakin untuk menyelesaikan tes ini?</string>
-
+    <string name="text_pass_or_email_wrong">Password atau Email Salah, Silakan Coba lagi.</string>
 </resources>
