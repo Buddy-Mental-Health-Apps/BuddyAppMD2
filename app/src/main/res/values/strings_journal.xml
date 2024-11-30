@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="streak_jurnal">Jurnal Streak</string>
+    <string name="integer">%i</string>
+    <string name="your_journal">Jurnal Kamu</string>
+    <string name="make_journal">Buat Jurnal</string>
+    <string name="gambar_jurnal">Gambar Jurnal</string>
+    <string name="journal_title">Judul Jurnal</string>
+    <string name="journal_content">Konten Jurnal</string>
+    <string name="timestamp">Timestamp</string>
+    <string name="string">%s</string>
+    <string name="journal_content_hint">Bagaimana perasaanmu hari ini?</string>
+    <string name="bold">B</string>
+    <string name="italic">I</string>
+    <string name="underline"><u>U</u></string>
+    <string name="journal_save">Simpan Jurnal</string>
+    <string name="pick_image">Pilih Foto</string>
+    <string name="crop_error">Terjadi error saat memotong gambar</string>
+    <string name="back">Kembali</string>
+    <string name="journal_cover_default">Cover Jurnal Default</string>
+    <string name="analisis_jurnal">Analisis Jurnal</string>
+    <string name="edit_jurnal">Edit Jurnal</string>
+</resources>

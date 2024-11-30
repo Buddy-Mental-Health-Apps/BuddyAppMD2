@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("com.google.devtools.ksp") version "1.9.20-1.0.14"
+    id("kotlin-parcelize")
+    id("androidx.navigation.safeargs")
 }
 
 android {
@@ -55,4 +58,26 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    // Library Room
+    implementation(libs.androidx.lifecycle.viewmodel.ktx.v287)
+    implementation(libs.androidx.lifecycle.livedata.ktx.v287)
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler)
+
+    // Library Glide
+    implementation(libs.glide)
+
+    // Library uCrop
+    implementation(libs.ucrop)
+
+    // Library Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
+
+    // Library DataStore
+    implementation(libs.androidx.datastore.preferences)
+    implementation(libs.androidx.activity.ktx)
+
 }

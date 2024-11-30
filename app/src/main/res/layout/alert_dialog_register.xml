@@ -34,6 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/option_login_in_register"
+        android:textStyle="bold"
         android:textSize="16sp"
         android:textColor="@android:color/holo_red_light"
         app:layout_constraintTop_toBottomOf="@id/description_ad_register"

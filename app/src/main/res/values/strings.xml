@@ -45,6 +45,7 @@
     <string name="yuk_mulai">Yuk mulai!</string>
     <string name="start_now">Mulai Sekarang!</string>
     <string name="buddy_obat">Buddy Obat</string>
+    <string name="buddy_dokter">Buddy Dokter</string>
     <string name="buddy_story">Buddy Story</string>
     <string name="finish">Selesai</string>
     <string name="buddy_kenalan">Buddy Kenalan</string>
@@ -66,4 +67,10 @@
     <string name="option_ok">OK</string>
     <string name="description_ad_login">Yey, Kamu sudah berhasil masuk! </string>
     <string name="option_next_in_login">Lanjut</string>
+    <string name="quiz_title">Tes Kesehatan Mental</string>
+    <string name="question_ad_answer_not_found">Tes dapat diselesaikan jika soal sudah terisi semua.</string>
+    <string name="question_ad_delete">Riwayat yang dihapus bersifat permanen, apakah Kamu yakin menghapus riwayat tes ini?</string>
+    <string name="option_delete_yes">Hapus</string>
+    <string name="question_ad_finish_test">Apakah kamu yakin untuk menyelesaikan tes ini?</string>
+    <string name="text_pass_or_email_wrong">Password atau Email Salah, Silakan Coba lagi.</string>
 </resources>
