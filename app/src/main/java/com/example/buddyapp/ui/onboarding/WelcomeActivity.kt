@@ -6,22 +6,26 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.buddyapp.R
 import com.example.buddyapp.authentication.AuthenticationActivity
-import com.example.buddyapp.databinding.ActivityOnboardingBinding
+import com.example.buddyapp.databinding.ActivityWelcomeBinding
 
-class OnboardingActivity : AppCompatActivity(), View.OnClickListener {
-    private lateinit var binding: ActivityOnboardingBinding
+class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
+    private lateinit var binding: ActivityWelcomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        supportActionBar?.hide()
-        binding = ActivityOnboardingBinding.inflate(layoutInflater)
+        binding = ActivityWelcomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.btnMulai.setOnClickListener(this)
+        binding.btnSkip.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
         if (v?.id == R.id.btn_mulai) {
+            val intent = Intent(this, OnboardingActivity::class.java)
+            startActivity(intent)
+        }
+        if (v?.id == R.id.btn_skip) {
             val intent = Intent(this, AuthenticationActivity::class.java)
             startActivity(intent)
         }
