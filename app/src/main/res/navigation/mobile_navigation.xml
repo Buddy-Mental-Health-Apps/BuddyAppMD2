@@ -12,16 +12,16 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_psikolog"
-        android:name="com.example.buddyapp.ui.psikolog.PsikologFragment"
-        android:label="@string/title_psikolog"
-        tools:layout="@layout/fragment_psikolog" />
+        android:id="@+id/navigation_medicine"
+        android:name="com.example.buddyapp.ui.medicine.MedicineFragment"
+        android:label="@string/find_medicine"
+        tools:layout="@layout/fragment_medicine" />
 
     <fragment
         android:id="@+id/navigation_story"
         android:name="com.example.buddyapp.ui.journal.JournalFragment"
         android:label="@string/title_story"
-        tools:layout="@layout/fragment_journal" >
+        tools:layout="@layout/fragment_journal">
         <action
             android:id="@+id/action_navigation_story_to_writeJournalFragment"
             app:destination="@id/writeJournalFragment"
@@ -30,7 +30,7 @@
     <fragment
         android:id="@+id/writeJournalFragment"
         android:name="com.example.buddyapp.ui.journal.WriteJournalFragment"
-        android:label="@string/jurnal_title"
+        android:label="@string/journal_title"
         tools:layout="@layout/fragment_write_journal">
         <action
             android:id="@+id/action_writeJournalFragment_to_detailJournalFragment"

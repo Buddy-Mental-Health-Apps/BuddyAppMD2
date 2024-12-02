@@ -39,7 +39,12 @@ class WriteJournalFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
+        // Hide the action bar
+        (activity as? AppCompatActivity)?.supportActionBar?.hide()
+        val bottomNav =
+            (activity as? AppCompatActivity)?.findViewById<BottomNavigationView>(R.id.nav_view)
+        bottomNav?.visibility = View.GONE
+        
         _binding = FragmentWriteJournalBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -50,35 +55,35 @@ class WriteJournalFragment : Fragment() {
         val factory = ViewModelFactory.getInstance(requireActivity().application)
         journalViewModel = ViewModelProvider(this, factory)[JournalViewModel::class.java]
 
-        // Hide the action bar
-        (activity as? AppCompatActivity)?.supportActionBar?.hide()
-        val bottomNav = (activity as? AppCompatActivity)?.findViewById<BottomNavigationView>(R.id.nav_view)
-        bottomNav?.visibility = View.GONE
-
-        // Access the toolbar
         val titleEditText = binding.etJournalTitle
         val backButton = binding.btnBack
 
-        // Set initial color to 70% opacity
         titleEditText.setTextColor(ContextCompat.getColor(requireContext(), R.color.blue_70))
 
-        // Add a TextWatcher to change the color based on text input
         titleEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                // Change color to 100% opacity if there is input, otherwise 70%
                 if (s.isNullOrEmpty()) {
-                    titleEditText.setTextColor(ContextCompat.getColor(requireContext(), R.color.blue_70))
+                    titleEditText.setTextColor(
+                        ContextCompat.getColor(
+                            requireContext(),
+                            R.color.blue_70
+                        )
+                    )
                 } else {
-                    titleEditText.setTextColor(ContextCompat.getColor(requireContext(), R.color.blue))
+                    titleEditText.setTextColor(
+                        ContextCompat.getColor(
+                            requireContext(),
+                            R.color.blue
+                        )
+                    )
                 }
             }
 
             override fun afterTextChanged(s: Editable?) {}
         })
 
-        // Handle back button click
         backButton.setOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }
@@ -97,7 +102,8 @@ class WriteJournalFragment : Fragment() {
             if (isSuccess) {
                 navigateToDetailJournalPage()
             } else {
-                Toast.makeText(requireContext(), "Failed to save journal.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Failed to save journal.", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
     }
@@ -107,9 +113,10 @@ class WriteJournalFragment : Fragment() {
         val description = binding.etJournalContent.text.toString()
         val imageUri = currentImageUri.toString()
 
-        val action = WriteJournalFragmentDirections.actionWriteJournalFragmentToDetailJournalFragment(
-            title, description, imageUri
-        )
+        val action =
+            WriteJournalFragmentDirections.actionWriteJournalFragmentToDetailJournalFragment(
+                title, description, imageUri
+            )
         findNavController().navigate(action)
     }
 
@@ -122,13 +129,18 @@ class WriteJournalFragment : Fragment() {
     ) { uri: Uri? ->
         if (uri != null) {
             val destinationUri =
-                Uri.fromFile(File(requireActivity().cacheDir, "cropped_image_${System.currentTimeMillis()}.jpg"))
+                Uri.fromFile(
+                    File(
+                        requireActivity().cacheDir,
+                        "cropped_image_${System.currentTimeMillis()}.jpg"
+                    )
+                )
             uCropLauncher.launch(
                 UCrop.of(uri, destinationUri)
                     .getIntent(requireActivity())
             )
-    } else {
-        Log.d("Photo Picker", "No Media Selected")
+        } else {
+            Log.d("Photo Picker", "No Media Selected")
         }
     }
 
@@ -182,6 +194,9 @@ class WriteJournalFragment : Fragment() {
         super.onDestroy()
         _binding = null
         (activity as? AppCompatActivity)?.supportActionBar?.show()
+        val bottomNav =
+            (activity as? AppCompatActivity)?.findViewById<BottomNavigationView>(R.id.nav_view)
+        bottomNav?.visibility = View.VISIBLE
     }
 
 }

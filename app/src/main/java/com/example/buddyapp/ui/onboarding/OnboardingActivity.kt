@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.example.buddyapp.MainActivity
+import androidx.core.view.ContentInfoCompat.Flags
 import com.example.buddyapp.R
 import com.example.buddyapp.authentication.AuthenticationActivity
 import com.example.buddyapp.data.ds.UserPreference
@@ -17,17 +17,24 @@ import kotlinx.coroutines.launch
 class OnboardingActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityOnboardingBinding
+    private lateinit var userPreference: UserPreference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
         binding = ActivityOnboardingBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        userPreference = UserPreference.getInstance(applicationContext.dataStore)
+
         binding.btnMulai.setOnClickListener(this)
     }
     
     override fun onClick(v: View?) {
         if (v?.id == R.id.btn_mulai) {
+            CoroutineScope(Dispatchers.Main).launch {
+                userPreference.setFirstTimeStatus()
+            }
             val intent = Intent(this, AuthenticationActivity::class.java)
             startActivity(intent)
         }

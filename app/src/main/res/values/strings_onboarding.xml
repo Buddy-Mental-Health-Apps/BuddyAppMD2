@@ -4,8 +4,8 @@
     <string name="welcome_desc">Disini kamu bebas berekspresi! Tidak perlu mengkhawatirkan apapun, Buddy akan selalu ada bersama kamu.</string>
     <string name="test_title">Cek Kesehatan Mental</string>
     <string name="test_desc">Kamu bisa cek kesehatan mental kamu secara berkala hanya dengan menjawab beberapa pertanyaan saja.</string>
-    <string name="psikolog_title">Temukan Psikolog Terdekat</string>
-    <string name="psikolog_desc">Butuh teman bicara? Buddy akan bantu temukan psikolog terdekat yang siap mendengar dan mendukung kamu!</string>
-    <string name="jurnal_title">Ceritakan Hatimu di Jurnal</string>
-    <string name="jurnal_desc">Tempat yang aman untuk ceritakan isi hatimu. Senang maupun sedih Buddy akan selalu setia bersamamu!</string>
+    <string name="medicine_title">Temukan Informasi Obat</string>
+    <string name="medicine_desc">Terlalu pusing dalam mencari obat? Buddy akan menyediakan informasi obat yang kamu butuhkan.</string>
+    <string name="onboarding_journal_title">Ceritakan Hatimu di Jurnal</string>
+    <string name="onboarding_journal_desc">Tempat yang aman untuk ceritakan isi hatimu. Senang maupun sedih Buddy akan selalu setia bersamamu!</string>
 </resources>
