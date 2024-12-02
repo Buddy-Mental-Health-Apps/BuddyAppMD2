@@ -20,4 +20,5 @@
     <string name="journal_cover_default">Cover Jurnal Default</string>
     <string name="analisis_jurnal">Analisis Jurnal</string>
     <string name="edit_jurnal">Edit Jurnal</string>
+    <string name="empty_journal">Jurnal Kosong</string>
 </resources>

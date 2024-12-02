@@ -56,7 +56,7 @@
         android:contentDescription="@string/buddy_obat"
         android:src="@drawable/buddy_obat"
         app:layout_constraintBottom_toTopOf="@id/tv_medicine_title"
-        tools:layout_editor_absoluteX="411dp" />
+        app:layout_constraintStart_toEndOf="parent"/>
 
     <TextView
         android:id="@+id/tv_medicine_title"
@@ -96,7 +96,7 @@
         android:id="@+id/tv_journal_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/journal_title"
+        android:text="@string/onboarding_journal_title"
         android:gravity="center_horizontal"
         android:textAppearance="@style/TextAppearance.Onboarding.Title"
         android:layout_marginTop="128dp"
@@ -108,7 +108,7 @@
         android:id="@+id/tv_journal_desc"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/journal_desc"
+        android:text="@string/onboarding_journal_desc"
         android:gravity="center_horizontal"
         android:textAppearance="@style/TextAppearance.Onboarding.Desc"
         android:layout_marginTop="16dp"

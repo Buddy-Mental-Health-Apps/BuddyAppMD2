@@ -1,3 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="obat">Obat</string>
+    <string name="find_medicine">Cari Obat</string>
+    <string name="medicine_search_hint">Cari Obat Disini</string>
+    <string name="detail_medicine">Detail Obat</string>
+    <string name="buy_now">Beli Sekarang</string>
+    <string name="medicine_not_found">Obat $s belum tersedia</string>
+    <string name="medicine_image">Foto Obat</string>
 </resources>

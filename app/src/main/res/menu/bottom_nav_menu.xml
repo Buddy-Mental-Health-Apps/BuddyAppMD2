@@ -7,9 +7,9 @@
         android:title="@string/title_home" />
 
     <item
-        android:id="@+id/navigation_psikolog"
-        android:icon="@drawable/icon_psikolog"
-        android:title="@string/title_psikolog" />
+        android:id="@+id/navigation_medicine"
+        android:icon="@drawable/ic_medicine"
+        android:title="@string/obat" />
 
     <item
         android:id="@+id/navigation_story"

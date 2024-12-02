@@ -20,6 +20,7 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide()
         binding = ActivityWelcomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -42,11 +43,6 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
                             finish()
                         }
                     }
-                } else {
-                    userPreference.setFirstTimeStatus()
-                    val intent = Intent(this@WelcomeActivity, OnboardingActivity::class.java)
-                    startActivity(intent)
-                    finish()
                 }
             }
         }

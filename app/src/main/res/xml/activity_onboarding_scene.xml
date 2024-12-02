@@ -6,7 +6,7 @@
     <Transition
         motion:constraintSetEnd="@+id/end"
         motion:constraintSetStart="@id/start"
-        motion:duration="1000"
+        motion:duration="2000"
         motion:autoTransition="animateToEnd">
        <KeyFrameSet>
        </KeyFrameSet>
@@ -135,7 +135,11 @@
             motion:layout_constraintHorizontal_bias="0.5"
             motion:layout_constraintTop_toTopOf="@+id/menu2"
             android:layout_marginBottom="8dp"
-            android:layout_marginEnd="128dp" />
+            android:layout_marginEnd="128dp" >
+            <CustomAttribute
+                motion:attributeName="crossfade"
+                motion:customFloatValue="0" />
+        </Constraint>
     </ConstraintSet>
     <ConstraintSet
         android:id="@+id/onboarding2"
@@ -262,7 +266,6 @@
             motion:layout_constraintEnd_toStartOf="parent" />
         <Constraint
             android:id="@+id/tv_medicine_desc"
-            motion:layout_constraintEnd_toEndOf="parent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             motion:layout_constraintTop_toBottomOf="@id/tv_medicine_title"
@@ -289,7 +292,7 @@
             android:id="@+id/tv_journal_desc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            motion:layout_constraintTop_toBottomOf="@id/tv_medicine_title"
+            motion:layout_constraintTop_toBottomOf="@id/tv_journal_title"
             android:layout_marginTop="16dp"
             motion:layout_constraintStart_toStartOf="parent"
             motion:layout_constraintEnd_toEndOf="parent"
