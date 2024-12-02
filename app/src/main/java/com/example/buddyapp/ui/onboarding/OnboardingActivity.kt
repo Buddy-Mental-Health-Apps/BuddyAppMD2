@@ -17,7 +17,6 @@ import kotlinx.coroutines.launch
 class OnboardingActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityOnboardingBinding
-    private lateinit var userPreference: UserPreference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,33 +24,6 @@ class OnboardingActivity : AppCompatActivity(), View.OnClickListener {
         binding = ActivityOnboardingBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.btnMulai.setOnClickListener(this)
-        
-        userPreference = UserPreference.getInstance(applicationContext.dataStore)
-
-        CoroutineScope(Dispatchers.Main).launch {
-            userPreference.isFirstTime().collect { isFirstTime ->
-                if (!isFirstTime) {
-                    userPreference.getSession().collect { userModel ->
-                        if (userModel.isLogin) {
-                            val intent = Intent(this@OnboardingActivity, MainActivity::class.java)
-                            startActivity(intent)
-                            finish()
-                        } else {
-                            val intent = Intent(this@OnboardingActivity, AuthenticationActivity::class.java)
-                            startActivity(intent)
-                            finish()
-                        }
-                    }
-                } else {
-                    userPreference.setFirstTimeStatus()
-                    val fragmentManager = supportFragmentManager
-                    val onboardingZero = OnboardingZero()
-                    fragmentManager.beginTransaction()
-                        .add(R.id.frame_container, onboardingZero, OnboardingZero::class.java.simpleName)
-                        .commit()
-                }
-            }
-        }
     }
     
     override fun onClick(v: View?) {
