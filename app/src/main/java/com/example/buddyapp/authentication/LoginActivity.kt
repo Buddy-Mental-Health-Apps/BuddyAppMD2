@@ -2,17 +2,20 @@ package com.example.buddyapp.authentication
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.buddyapp.MainActivity
+import com.example.buddyapp.R
 import com.example.buddyapp.data.viewmodelfactory.ViewModelFactory
 import com.example.buddyapp.databinding.ActivityLoginBinding
 import kotlinx.coroutines.delay
@@ -36,6 +39,12 @@ class LoginActivity : AppCompatActivity() {
 
         observeViewModel()
         showLoading(false)
+
+        val infoTextViewLogin2 = findViewById<TextView>(R.id.infoTextViewLogin2)
+        infoTextViewLogin2.setOnClickListener {
+            val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun setupView() {
@@ -61,9 +70,23 @@ class LoginActivity : AppCompatActivity() {
                 viewModel.login(email, password)
                 binding.loginButton.isEnabled = false
             } else {
-                showAlertDialog("Error", "Semua kolom harus diisi dengan benar.", false)
+                showDataNotFoundDialog()
             }
         }
+    }
+
+    private fun showDataNotFoundDialog() {
+        val dialogView = layoutInflater.inflate(R.layout.alert_dialog_data_not_found, null)
+        val alertDialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setCancelable(false)
+            .create()
+
+        dialogView.findViewById<TextView>(R.id.option_ok).setOnClickListener {
+            alertDialog.dismiss() // Dismiss the dialog when OK button is clicked
+        }
+
+        alertDialog.show()
     }
 
     private fun observeViewModel() {
@@ -74,6 +97,10 @@ class LoginActivity : AppCompatActivity() {
                         viewModel.apiMessage.collect { message ->
                             message?.let {
                                 Toast.makeText(this@LoginActivity, it, Toast.LENGTH_LONG).show()
+                                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                startActivity(intent)
+
+                                finish()
                             }
                         }
                     }.onFailure { exception ->

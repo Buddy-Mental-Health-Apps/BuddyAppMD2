@@ -39,6 +39,13 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
+    packagingOptions {
+        resources {
+            excludes.add("META-INF/LICENSE.md")
+            excludes.add("META-INF/NOTICE.md")
+        }
+    }
 }
 
 dependencies {
@@ -54,7 +61,7 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.activity)
 //    implementation(libs.androidx.legacy.support.v4)
-//    implementation(libs.androidx.fragment.ktx)
+    implementation(libs.androidx.fragment.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -79,5 +86,16 @@ dependencies {
     // Library DataStore
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.androidx.activity.ktx)
+
+    // Library Notification
+    implementation(libs.androidx.work.runtime.ktx)
+
+    // Library OTP
+    implementation(libs.android.mail) {
+        exclude(group = "com.sun.mail", module = "android-activation")
+    }
+    implementation(libs.android.activation) {
+        exclude(group = "com.sun.mail", module = "android-mail")
+    }
 
 }

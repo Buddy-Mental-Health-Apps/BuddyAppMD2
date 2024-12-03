@@ -6,4 +6,5 @@ data class UserModel(
     val token: String,
     val isLogin: Boolean = false,
     val tokenExp: String,
+    val name: String
 )

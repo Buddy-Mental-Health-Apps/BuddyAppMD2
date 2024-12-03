@@ -10,5 +10,6 @@ data class LoginResult(
     val userId: String? = null,
     val email: String? = null,
     val token: String? = null,
-    val tokenExpiration: String? = null
+    val tokenExpiration: String? = null,
+    val name: String? = null
 )

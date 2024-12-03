@@ -1,10 +1,18 @@
 package com.example.buddyapp
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -15,18 +23,27 @@ import com.example.buddyapp.data.ds.UserPreference
 import com.example.buddyapp.data.ds.dataStore
 import com.example.buddyapp.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
+import com.example.buddyapp.notification.NotificationWorker
+import java.util.concurrent.TimeUnit
 import kotlinx.coroutines.launch
+import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var userPreference: UserPreference
 
+    private val notificationPermissionRequestCode = 100
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        createNotificationChannel(this)
 
         userPreference = UserPreference.getInstance(applicationContext.dataStore)
 
@@ -36,6 +53,14 @@ class MainActivity : AppCompatActivity() {
                     val intent = Intent(this@MainActivity, AuthenticationActivity::class.java)
                     startActivity(intent)
                     finish()
+                } else {
+                    userPreference.getLoginTime().collect { loginTime ->
+                        val currentTime = System.currentTimeMillis()
+
+                        if (loginTime != 0L && currentTime - loginTime >= TimeUnit.HOURS.toMillis(6)) {
+                            scheduleNotification()
+                        }
+                    }
                 }
             }
         }
@@ -43,8 +68,6 @@ class MainActivity : AppCompatActivity() {
         val navView: BottomNavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
 
-        // Passing each menu ID as a set of IDs because each
-        // menu should be considered as top-level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_home, R.id.navigation_medicine, R.id.navigation_story
@@ -76,9 +99,49 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        // Menutup aplikasi saat tombol back ditekan
-        super.onBackPressed() // Memanggil super untuk memastikan aktivitas dihancurkan
-        finishAffinity() // Menutup semua aktivitas dan keluar dari aplikasi
+        super.onBackPressed()
+        finishAffinity()
     }
 
+    private fun createNotificationChannel(context: Context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channelId = "mental_health_channel"
+            val channelName = "Mental Health Notifications"
+            val channelDescription = "Notifications for mental health app updates"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+
+            val channel = NotificationChannel(channelId, channelName, importance).apply {
+                description = channelDescription
+            }
+
+            val notificationManager: NotificationManager =
+                context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
+    }
+
+    private fun scheduleNotification() {
+        val randomDelay = Random.nextLong(TimeUnit.HOURS.toMillis(6))
+        val notificationRequest = PeriodicWorkRequestBuilder<NotificationWorker>(3, TimeUnit.HOURS)
+            .setInitialDelay(randomDelay, TimeUnit.MILLISECONDS)
+            .build()
+
+        WorkManager.getInstance(this).enqueue(notificationRequest)
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        if (requestCode == notificationPermissionRequestCode) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                scheduleNotification()
+            } else {
+                Toast.makeText(this, "Permission denied to send notifications", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
 }

@@ -33,7 +33,8 @@ class LoginViewModel(
                             email = email,
                             token = loginResult.token ?: "",
                             tokenExp = loginResult.tokenExpiration ?: "",
-                            isLogin = true
+                            isLogin = true,
+                            name = loginResult.name ?: ""
                         )
                         repository.saveSession(userModel)
                         _loginResult.value = Result.success(userModel)

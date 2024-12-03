@@ -60,9 +60,28 @@
     <string name="description_ad_login">Yey, Kamu sudah berhasil masuk! </string>
     <string name="option_next_in_login">Lanjut</string>
     <string name="quiz_title">Tes Kesehatan Mental</string>
-    <string name="question_ad_answer_not_found">Tes dapat diselesaikan jika soal sudah terisi semua.</string>
+    <string name="question_ad_answer_not_found">Tes dapat dilanjutkan jika soal sudah terjawab. Silakan pilih jawaban yang menurut Kamu benar.</string>
     <string name="question_ad_delete">Riwayat yang dihapus bersifat permanen, apakah Kamu yakin menghapus riwayat tes ini?</string>
     <string name="option_delete_yes">Hapus</string>
     <string name="question_ad_finish_test">Apakah kamu yakin untuk menyelesaikan tes ini?</string>
     <string name="text_pass_or_email_wrong">Password atau Email Salah, Silakan Coba lagi.</string>
+    <string name="timer">05:00</string>
+    <string name="otp_code">Masukkan kode OTP</string>
+    <string name="verification_btn">Verifikasi</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- String Quiz Page -->
+    <string name="question">Soal Nomor</string>
+    <string name="question_number">Nomor soal</string>
+    <string name="question_text">Pertanyaan akan muncul di sini</string>
+    <string name="option_a">Option A</string>
+    <string name="option_b">Option B</string>
+    <string name="option_c">Option C</string>
+    <string name="option_d">Option D</string>
+    <string name="option_e">Option E</string>
+    <string name="button_next_page">Selanjutnya</string>
+    <string name="button_back_page">Kembali</string>
+    <string name="button_submit">Selesai</string>
+    <string name="toolbar_text_quiz">Tes Kesehatan Mental</string>
+    <string name="description_quiz">Dalam dua minggu terakhir, seberapa sering Anda merasa terganggu oleh masalah berikut ini?</string>
 </resources>

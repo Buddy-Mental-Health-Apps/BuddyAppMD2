@@ -1,7 +1,7 @@
 package com.example.buddyapp.ui.home
 
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,6 +31,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        val sharedPref = requireContext().getSharedPreferences("UserPrefs", MODE_PRIVATE)
+        val name = sharedPref.getString("name", "Pengguna")
+
+        val greetingTextView = root.findViewById<TextView>(R.id.greetingText)
+        greetingTextView.text = "Hi, $name!"
 
         val testButton = root.findViewById<Button>(R.id.testButton)
         testButton.setOnClickListener {

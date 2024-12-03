@@ -7,15 +7,15 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
-import android.view.WindowManager
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.example.buddyapp.R
+import com.example.buddyapp.authentication.otp.EmailSender
+import com.example.buddyapp.authentication.otp.OtpDialogFragment
 import com.example.buddyapp.data.api.ApiConfig
-import com.example.buddyapp.data.api.RegisterResponse
 import com.example.buddyapp.data.ds.Register
 import com.example.buddyapp.data.ds.RegisterRepository
 import com.example.buddyapp.data.viewmodelfactory.RegisterViewModelFactory
@@ -37,7 +37,6 @@ class RegisterActivity : AppCompatActivity() {
         playAnimation()
 
         observeRegisterResponse()
-
         showLoading(false)
 
         val infoTextView2 = findViewById<TextView>(R.id.infoTextView2)
@@ -45,7 +44,6 @@ class RegisterActivity : AppCompatActivity() {
             val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
             startActivity(intent)
         }
-
     }
 
     private fun setupView() {
@@ -53,10 +51,7 @@ class RegisterActivity : AppCompatActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             window.insetsController?.hide(WindowInsets.Type.statusBars())
         } else {
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-            )
+            window.insetsController?.hide(WindowInsets.Type.statusBars())
         }
         supportActionBar?.hide()
     }
@@ -67,15 +62,15 @@ class RegisterActivity : AppCompatActivity() {
             val email = binding.edRegisterEmail.text.toString()
             val password = binding.edRegisterPassword.text.toString()
 
+            // Cek apakah semua field terisi
             if (validateInput(name, email, password)) {
                 val register = Register(name, email, password)
 
                 showLoading(true)
-
                 registerViewModel.registerUser(register)
                 binding.registerButton.isEnabled = false
             } else {
-                showAlertDialog("Error", "Semua kolom harus diisi dengan benar.", false)
+                showDataNotFoundDialog()
             }
         }
     }
@@ -84,47 +79,98 @@ class RegisterActivity : AppCompatActivity() {
         return name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()
     }
 
-    private fun observeRegisterResponse() {
-        registerViewModel.registerResponse.observe(
-            this,
-            Observer { registerResponse: RegisterResponse? ->
-                showLoading(false)
-                binding.registerButton.isEnabled = true
+    private fun showDataNotFoundDialog() {
+        val dialogView = layoutInflater.inflate(R.layout.alert_dialog_data_not_found, null)
+        val alertDialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setCancelable(false)
+            .create()
 
-                registerResponse?.let {
-                    if (!registerResponse.error!!) {
-                        showAlertDialog(
-                            title = "Yeah!",
-                            message = registerResponse.message ?: "Registrasi berhasil.",
-                            isSuccess = true
-                        )
-                    } else {
-                        val errorMessage = if (registerResponse.message?.contains("Email sudah terdaftar", true) == true) {
-                            "Email sudah terdaftar. Silakan gunakan email lain."
-                        } else {
-                            registerResponse.message ?: "Terjadi kesalahan. Silakan coba lagi."
-                        }
+        dialogView.findViewById<TextView>(R.id.option_ok).setOnClickListener {
+            alertDialog.dismiss()
+        }
 
-                        showAlertDialog(
-                            title = "Error",
-                            message = errorMessage,
-                            isSuccess = false
-                        )
-                    }
-                } ?: run {
-                    showAlertDialog(
-                        title = "Error",
-                        message = "Response kosong. Silakan coba lagi.",
-                        isSuccess = false
-                    )
-                }
-            }
-        )
+        alertDialog.show()
     }
 
-    private fun showAlertDialog(title: String, message: String, isSuccess: Boolean) {
+    private fun showOtpDialog(correctOtp: String) {
+        val otpDialog = OtpDialogFragment(correctOtp = correctOtp) {
+            showAlertDialog(isSuccess = true, message = "Registrasi berhasil diverifikasi!")
+        }
+        otpDialog.show(supportFragmentManager, "OtpDialog")
+    }
+
+    private fun observeRegisterResponse() {
+        registerViewModel.registerResponse.observe(this, Observer { registerResponse ->
+            showLoading(false)
+            binding.registerButton.isEnabled = true
+
+            registerResponse?.let {
+                if (!registerResponse.error!!) {
+                    val email = binding.edRegisterEmail.text.toString()
+                    val otp = (100000..999999).random().toString()
+
+                    Thread {
+                        try {
+                            val emailAlreadyExists = checkEmailExists(email)
+                            if (emailAlreadyExists) {
+                                runOnUiThread {
+                                    showLoading(false)
+                                    showAlertDialog(isSuccess = false, message = "Email sudah terdaftar. Silakan gunakan email lain.")
+                                    binding.registerButton.isEnabled = true
+                                }
+                            } else {
+                                try {
+                                    EmailSender.sendEmail(
+                                        toEmail = email,
+                                        subject = "Kode OTP Anda",
+                                        messageBody = "Kode OTP Anda adalah: $otp. Berlaku selama 5 menit."
+                                    )
+                                    runOnUiThread {
+                                        showOtpDialog(otp)
+                                    }
+                                } catch (e: Exception) {
+                                    runOnUiThread {
+                                        showLoading(false)
+                                        showAlertDialog(isSuccess = false, message = "Gagal mengirim OTP: ${e.message}")
+                                        binding.registerButton.isEnabled = true
+                                    }
+                                }
+                            }
+                        } catch (e: Exception) {
+                            runOnUiThread {
+                                showLoading(false)
+                                showAlertDialog(isSuccess = false, message = "Terjadi kesalahan saat memeriksa email.")
+                                binding.registerButton.isEnabled = true
+                            }
+                        }
+                    }.start()
+
+                    // Simpan nama pengguna ke SharedPreferences setelah registrasi berhasil
+                    val sharedPref = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+                    val editor = sharedPref.edit()
+                    editor.putString("name", binding.edRegisterName.text.toString())
+                    editor.apply()
+
+                } else {
+                    val errorMessage = registerResponse.message ?: "Terjadi kesalahan. Silakan coba lagi."
+                    showAlertDialog(isSuccess = false, message = errorMessage)
+                }
+            } ?: run {
+                showAlertDialog(isSuccess = false, message = "Response kosong. Silakan coba lagi.")
+            }
+        })
+    }
+
+    // Metode untuk memeriksa apakah email sudah terdaftar
+    private fun checkEmailExists(email: String): Boolean {
+        val registeredEmails = listOf("email@example.com", "user@domain.com")
+        return registeredEmails.contains(email)
+    }
+
+    private fun showAlertDialog(isSuccess: Boolean, message: String) {
         AlertDialog.Builder(this).apply {
-            setTitle(title)
+            setTitle(if (isSuccess) "Success" else "Error")
             setMessage(message)
             setPositiveButton(if (isSuccess) "Masuk" else "OK") { _, _ ->
                 if (isSuccess) {
@@ -141,7 +187,6 @@ class RegisterActivity : AppCompatActivity() {
             show()
         }
     }
-
 
     private fun showLoading(isLoading: Boolean) {
         binding.pBar.visibility = if (isLoading) View.VISIBLE else View.GONE
