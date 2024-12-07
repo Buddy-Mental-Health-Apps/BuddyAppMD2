@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -16,9 +17,13 @@
         android:theme="@style/Theme.BuddyApp"
         tools:targetApi="31">
         <activity
+            android:name=".ui.quiz.QuizDetailActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"/>
+        <activity
             android:name=".ui.quiz.ResultActivity"
             android:exported="false"
-            android:theme="@style/Theme.Auth" />
+            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
         <activity
             android:name=".ui.quiz.QuizActivity"
             android:exported="false"
@@ -31,6 +36,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -49,4 +55,5 @@
             android:name="com.yalantis.ucrop.UCropActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
+
 </manifest>

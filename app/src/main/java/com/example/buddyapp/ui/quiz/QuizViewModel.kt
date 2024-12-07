@@ -13,7 +13,7 @@ class QuizViewModel : ViewModel() {
     val currentQuestionIndex: LiveData<Int> get() = _currentQuestionIndex
 
     // Mengubah userAnswers untuk menyimpan jawaban dalam bentuk String
-    private val userAnswers = mutableMapOf<Int, String>()
+    val userAnswers = mutableMapOf<Int, String>()
 
     // Mengatur daftar soal baru dan mereset indeks dan jawaban
     fun setQuestions(questions: List<QuestionsItem>) {
@@ -45,5 +45,17 @@ class QuizViewModel : ViewModel() {
     }
 
     // Mendapatkan semua jawaban pengguna
-    fun getUserAnswers(): Map<Int, String> = userAnswers
+    fun getAllAnswers(): FloatArray {
+        // Konversi jawaban user ke FloatArray (pastikan ada 23 jawaban sesuai model)
+        val answers = mutableListOf<Float>()
+        userAnswers.values.forEach { answer ->
+            answers.add(if (answer == "1") 1f else 0f) // Contoh: konversi jawaban "1" menjadi 1f, lainnya 0f
+        }
+        return answers.toFloatArray()
+    }
+
+    // Memeriksa apakah jawaban sudah dipilih untuk questionId tertentu
+    fun isAnswerSelected(questionId: Int): Boolean {
+        return userAnswers[questionId] != null
+    }
 }

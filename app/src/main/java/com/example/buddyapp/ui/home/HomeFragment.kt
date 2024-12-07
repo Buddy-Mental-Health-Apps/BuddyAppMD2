@@ -11,26 +11,27 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.buddyapp.R
-import com.example.buddyapp.databinding.FragmentHomeBinding
+import com.example.buddyapp.data.local.JournalRoomDatabase
+import com.example.buddyapp.data.local.Quiz
+import com.example.buddyapp.ui.quiz.HistoryItem
+import com.example.buddyapp.ui.quiz.HistoryQuizAdapter
 import com.example.buddyapp.ui.quiz.QuizActivity
+import com.example.buddyapp.ui.quiz.QuizDetailActivity
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var adapter: HistoryQuizAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
-
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        val root = inflater.inflate(R.layout.fragment_home, container, false)
 
         val sharedPref = requireContext().getSharedPreferences("UserPrefs", MODE_PRIVATE)
         val name = sharedPref.getString("name", "Pengguna")
@@ -44,35 +45,71 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             startActivity(intent)
         }
 
-        val happyIcon = root.findViewById<ImageView>(R.id.happyIcon)
-        happyIcon.setOnClickListener {
-            val toast = Toast.makeText(requireContext(), "Senang mendengarnya", Toast.LENGTH_SHORT)
-            toast.show()
-        }
 
-        val normalIcon = root.findViewById<ImageView>(R.id.normalIcon)
-        normalIcon.setOnClickListener {
-            val toast = Toast.makeText(requireContext(), "Coba lakukan aktivitas baru yuk!", Toast.LENGTH_SHORT)
-            toast.show()
-        }
-
-        val anxiousIcon = root.findViewById<ImageView>(R.id.anxiousIcon)
-        anxiousIcon.setOnClickListener {
-            val toast = Toast.makeText(requireContext(), "Ada apa? yuk tulis jurnal hari ini!", Toast.LENGTH_SHORT)
-            toast.show()
-        }
-
-        val sadIcon = root.findViewById<ImageView>(R.id.sadIcon)
-        sadIcon.setOnClickListener {
-            val toast = Toast.makeText(requireContext(), "Percayalah semua akan baik-baik saja", Toast.LENGTH_SHORT)
-            toast.show()
-        }
+        setupIcons(root)
+        setupHistoryRecyclerView(root)
 
         return root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun setupIcons(root: View) {
+        root.findViewById<ImageView>(R.id.happyIcon).setOnClickListener {
+            Toast.makeText(requireContext(), "Senang mendengarnya", Toast.LENGTH_SHORT).show()
+        }
+
+        root.findViewById<ImageView>(R.id.normalIcon).setOnClickListener {
+            Toast.makeText(requireContext(), "Coba lakukan aktivitas baru yuk!", Toast.LENGTH_SHORT).show()
+        }
+
+        root.findViewById<ImageView>(R.id.anxiousIcon).setOnClickListener {
+            Toast.makeText(requireContext(), "Ada apa? yuk tulis jurnal hari ini!", Toast.LENGTH_SHORT).show()
+        }
+
+        root.findViewById<ImageView>(R.id.sadIcon).setOnClickListener {
+            Toast.makeText(requireContext(), "Percayalah semua akan baik-baik saja", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun setupHistoryRecyclerView(root: View) {
+        val recyclerView = root.findViewById<RecyclerView>(R.id.historyRecyclerView)
+        val noDataImageView = root.findViewById<ImageView>(R.id.historyNotFoundImage)
+
+        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, true)
+
+        val quizDao = JournalRoomDatabase.getDatabase(requireContext()).quizDao()
+
+        // Inisialisasi adapter kosong
+        adapter = HistoryQuizAdapter(mutableListOf(), quizDao).apply {
+            onItemClick = { historyItem ->
+                val intent = Intent(requireContext(), QuizDetailActivity::class.java).apply {
+                    putExtra("title", historyItem.title)
+                    putExtra("description", historyItem.description) // Sesuaikan jika ada deskripsi
+                    putExtra("date", historyItem.date)
+                }
+                startActivity(intent)
+            }
+        }
+        recyclerView.adapter = adapter
+
+        // Mengamati perubahan data Quiz menggunakan LiveData
+        quizDao.getAllQuiz().observe(viewLifecycleOwner, Observer { quizList ->
+            if (quizList.isNullOrEmpty()) {
+                recyclerView.visibility = View.GONE
+                noDataImageView.visibility = View.VISIBLE
+            } else {
+                recyclerView.visibility = View.VISIBLE
+                noDataImageView.visibility = View.GONE
+
+                // Mengubah data Quiz ke HistoryItem
+                val historyItems = quizList.map { quiz ->
+                    HistoryItem(
+                        date = quiz.date ?: "No date",
+                        title = quiz.title ?: "Untitled",
+                        description = quiz.description?: "No Description"
+                    )
+                }
+                adapter.updateData(historyItems)
+            }
+        })
     }
 }

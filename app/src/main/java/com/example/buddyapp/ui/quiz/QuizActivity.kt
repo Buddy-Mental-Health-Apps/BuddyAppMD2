@@ -12,13 +12,15 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.lifecycleScope
 import com.example.buddyapp.MainActivity
 import com.example.buddyapp.R
 import com.example.buddyapp.data.api.ApiConfig
+import com.example.buddyapp.helper.QuizHelper
 import kotlinx.coroutines.launch
 
-class QuizActivity : AppCompatActivity() {
+class QuizActivity : AppCompatActivity(), QuizFragment.QuizSubmissionListener {
     private val viewModel: QuizViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,6 +50,7 @@ class QuizActivity : AppCompatActivity() {
                 Log.e("QuizActivity", "Error fetching questions", e)
                 // Handle error, you can show a Toast or Dialog to inform the user
             }
+
         }
 
         // Observer untuk daftar soal
@@ -103,4 +106,45 @@ class QuizActivity : AppCompatActivity() {
 
         alertDialog.show()
     }
+
+    override fun onSubmitQuiz() {
+        // Tangkap semua jawaban user
+        val userAnswers: FloatArray = viewModel.getAllAnswers() // Pastikan ini mengembalikan FloatArray dengan 23 elemen
+
+        // Tampilkan dialog konfirmasi sebelum melanjutkan
+        showFinishDialog(userAnswers)
+    }
+
+    private fun showFinishDialog(userAnswers: FloatArray) {
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.ad_test_finish, null)
+
+        val optionYes = dialogView.findViewById<View>(R.id.option_yes)
+        val optionBack = dialogView.findViewById<View>(R.id.option_back)
+
+        val alertDialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setCancelable(false)
+            .create()
+
+        optionYes.setOnClickListener {
+            alertDialog.dismiss()
+
+            // Inisialisasi QuizHelper dan proses prediksi
+            val quizHelper = QuizHelper(this)
+            val predictions = quizHelper.predictResults(userAnswers)
+
+            // Kirim hasil prediksi ke ResultActivity
+            val intent = Intent(this, ResultActivity::class.java)
+            intent.putExtra("predictions", predictions)
+            startActivity(intent)
+            finish() // Tutup activity saat ini
+        }
+
+        optionBack.setOnClickListener {
+            alertDialog.dismiss() // Tutup dialog tanpa aksi tambahan
+        }
+
+        alertDialog.show()
+    }
 }
+
