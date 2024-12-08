@@ -22,6 +22,12 @@ data class Journal(
     @ColumnInfo(name = "description")
     var description: String? = null,
 
+    @ColumnInfo(name = "initialTimestamp")
+    var initialTimestamp: Long? = null,
+
     @ColumnInfo(name = "timestamp")
-    var timestamp: String? = null
+    var timestamp: String? = null,
+
+    @ColumnInfo(name = "isAnalyzed")
+    var isAnalyzed: Boolean = false
 ) : Parcelable

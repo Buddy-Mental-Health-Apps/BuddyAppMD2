@@ -23,9 +23,10 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal"
+            app:layout_constraintTop_toTopOf="@id/guideline2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -43,6 +44,8 @@
             android:textColor="@color/blue"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:alpha="0"
+            tools:alpha="100"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -55,6 +58,8 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:text="@string/name"
+            android:alpha="0"
+            tools:alpha="100"
             android:textColor="@color/orange"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
@@ -66,6 +71,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
+            android:alpha="0"
+            tools:alpha="100"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nameTextView"
@@ -88,6 +95,8 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
             android:text="@string/email"
+            android:alpha="0"
+            tools:alpha="100"
             android:textColor="@color/orange"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nameEditTextLayout" />
@@ -99,6 +108,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
+            android:alpha="0"
+            tools:alpha="100"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/emailTextView"
@@ -121,6 +132,8 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
             android:text="@string/password"
+            android:alpha="0"
+            tools:alpha="100"
             android:textColor="@color/orange"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/emailEditTextLayout" />
@@ -133,6 +146,8 @@
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             app:endIconMode="password_toggle"
+            android:alpha="0"
+            tools:alpha="100"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/passwordTextView"
@@ -157,6 +172,8 @@
             android:textColor="@color/blue"
             android:textSize="12sp"
             android:gravity="center"
+            android:alpha="0"
+            tools:alpha="100"
             app:layout_constraintBottom_toTopOf="@id/registerButton"
             app:layout_constraintEnd_toStartOf="@id/infoTextView2"
             app:layout_constraintHorizontal_chainStyle="packed"
@@ -175,6 +192,8 @@
             android:gravity="center"
             android:clickable="true"
             android:focusable="true"
+            android:alpha="0"
+            tools:alpha="100"
             app:layout_constraintBottom_toTopOf="@id/registerButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/infoTextView" />
@@ -189,6 +208,8 @@
             android:backgroundTint="@color/blue"
             android:text="@string/register"
             android:textColor="@color/white"
+            android:alpha="0"
+            tools:alpha="100"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/passwordEditTextLayout" />
@@ -199,7 +220,7 @@
             android:layout_height="64dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintGuide_percent="0.30191082"
+            app:layout_constraintGuide_percent="0.33"
             app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.constraintlayout.widget.Guideline

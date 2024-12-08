@@ -40,10 +40,16 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
     }
 
     suspend fun logout() {
-        dataStore.edit { preferences -> preferences.clear() }
+        dataStore.edit { preferences ->
+            preferences.remove(EMAIL_KEY)
+            preferences.remove(TOKEN_KEY)
+            preferences.remove(IS_LOGIN_KEY)
+            preferences.remove(USER_ID_KEY)
+            preferences.remove(TOKEN_EXP_KEY)
+        }
     }
 
-    suspend fun setFirstTimeStatus() {
+    suspend fun setNotFirstTimeStatus() {
         dataStore.edit { preferences ->
             preferences[IS_FIRST_TIME_KEY] = false
         }

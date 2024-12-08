@@ -21,43 +21,6 @@
         android:id="@+id/navigation_story"
         android:name="com.example.buddyapp.ui.journal.JournalFragment"
         android:label="@string/title_story"
-        tools:layout="@layout/fragment_journal">
-        <action
-            android:id="@+id/action_navigation_story_to_writeJournalFragment"
-            app:destination="@id/writeJournalFragment"
-            app:popUpTo="@id/writeJournalFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/writeJournalFragment"
-        android:name="com.example.buddyapp.ui.journal.WriteJournalFragment"
-        android:label="@string/journal_title"
-        tools:layout="@layout/fragment_write_journal">
-        <action
-            android:id="@+id/action_writeJournalFragment_to_detailJournalFragment"
-            app:destination="@id/detailJournalFragment"
-            app:popUpTo="@id/detailJournalFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/detailJournalFragment"
-        android:name="com.example.buddyapp.ui.journal.DetailJournalFragment"
-        android:label="Journal Details">
-        <action
-            android:id="@+id/action_detailJournalFragment_to_navigation_story"
-            app:destination="@id/navigation_story"
-            app:popUpTo="@id/navigation_story" />
-        <action
-            android:id="@+id/action_detailJournalFragment_to_writeJournalFragment"
-            app:destination="@id/writeJournalFragment"
-            app:popUpTo="@id/writeJournalFragment" />
-        <argument
-            android:name="title"
-            app:argType="string" />
-        <argument
-            android:name="description"
-            app:argType="string" />
-        <argument
-            android:name="imageUri"
-            app:argType="string" />
-    </fragment>
+        tools:layout="@layout/fragment_journal" />
 
 </navigation>

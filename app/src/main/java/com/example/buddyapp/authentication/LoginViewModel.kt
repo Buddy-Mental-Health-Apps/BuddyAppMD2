@@ -3,7 +3,7 @@ package com.example.buddyapp.authentication
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.buddyapp.data.api.ApiService
-import com.example.buddyapp.data.api.LoginResponse
+import com.example.buddyapp.data.api.response.LoginResponse
 import com.example.buddyapp.data.ds.UserModel
 import com.example.buddyapp.data.ds.UserRepository
 import kotlinx.coroutines.flow.MutableStateFlow

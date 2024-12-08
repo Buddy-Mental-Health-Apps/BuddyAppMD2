@@ -1,4 +1,4 @@
-package com.example.buddyapp.data.api
+package com.example.buddyapp.data.api.response
 
 import com.google.gson.annotations.SerializedName
 
@@ -28,12 +28,12 @@ data class Answers(
 
 data class QuestionsItem(
 
-	@field:SerializedName("question")
+    @field:SerializedName("question")
 	val question: String? = null,
 
-	@field:SerializedName("answers")
+    @field:SerializedName("answers")
 	val answers: Answers? = null,
 
-	@field:SerializedName("id")
+    @field:SerializedName("id")
 	val id: Int? = null
 )

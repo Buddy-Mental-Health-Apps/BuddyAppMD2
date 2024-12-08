@@ -9,7 +9,7 @@
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cv_item_history"
+        android:id="@+id/cv_item_journal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="4dp"
@@ -20,14 +20,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/img_item_image"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:scaleType="fitCenter"
+                android:scaleType="centerCrop"
                 android:adjustViewBounds="true"
                 android:layout_marginBottom="8dp"
                 android:contentDescription="@string/gambar_jurnal"
@@ -38,6 +37,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:gravity="center"
                 android:textColor="@color/blue"
                 android:text="@string/journal_title"
@@ -49,17 +50,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/blue"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:text="@string/journal_content"
                 android:textSize="14sp"
                 android:maxLines="2"
-                android:ellipsize="end"/>
+                android:ellipsize="end"
+                android:layout_marginBottom="4dp"/>
 
             <TextView
                 android:id="@+id/tv_timestamp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="end"
-                android:textColor="@color/blue"
+                android:textColor="@color/blue_70"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:paddingBottom="8dp"
                 android:text="@string/timestamp"
                 android:textSize="12sp" />
         </LinearLayout>

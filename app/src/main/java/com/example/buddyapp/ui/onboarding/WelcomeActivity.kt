@@ -12,6 +12,7 @@ import com.example.buddyapp.data.ds.dataStore
 import com.example.buddyapp.databinding.ActivityWelcomeBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
@@ -26,29 +27,12 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
 
         binding.btnMulai.setOnClickListener(this)
         binding.btnSkip.setOnClickListener(this)
-
-        userPreference = UserPreference.getInstance(applicationContext.dataStore)
-
-        CoroutineScope(Dispatchers.Main).launch {
-            userPreference.isFirstTime().collect { isFirstTime ->
-                if (!isFirstTime) {
-                    userPreference.getSession().collect { userModel ->
-                        if (userModel.isLogin) {
-                            val intent = Intent(this@WelcomeActivity, MainActivity::class.java)
-                            startActivity(intent)
-                            finish()
-                        } else {
-                            val intent = Intent(this@WelcomeActivity, AuthenticationActivity::class.java)
-                            startActivity(intent)
-                            finish()
-                        }
-                    }
-                }
-            }
-        }
     }
 
     override fun onClick(v: View?) {
+        CoroutineScope(Dispatchers.Main).launch {
+            userPreference.setNotFirstTimeStatus()
+        }
         if (v?.id == R.id.btn_mulai) {
             val intent = Intent(this, OnboardingActivity::class.java)
             startActivity(intent)

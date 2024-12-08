@@ -6,6 +6,17 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.buddyapp.ui.journal.JournalViewModel
 
 class ViewModelFactory private constructor(private val mApplication: Application) : ViewModelProvider.NewInstanceFactory() {
+
+    @Suppress("UNCHECKED_CAST")
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        return when {
+            modelClass.isAssignableFrom(JournalViewModel::class.java) -> {
+                JournalViewModel(mApplication) as T
+            }
+            else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
+        }
+    }
+
     companion object {
         @Volatile
         private var INSTANCE: ViewModelFactory? = null
@@ -18,16 +29,6 @@ class ViewModelFactory private constructor(private val mApplication: Application
                 }
             }
             return INSTANCE as ViewModelFactory
-        }
-    }
-
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return when {
-            modelClass.isAssignableFrom(JournalViewModel::class.java) -> {
-                JournalViewModel(mApplication) as T
-            }
-            else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
         }
     }
 }

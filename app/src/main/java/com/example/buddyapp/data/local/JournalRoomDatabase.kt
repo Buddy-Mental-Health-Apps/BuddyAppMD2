@@ -8,7 +8,7 @@ import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.work.impl.WorkDatabaseMigrations.MIGRATION_1_2
 
-@Database(entities = [Quiz::class, Journal::class], version = 2, exportSchema = false)
+@Database(entities = [Quiz::class, Journal::class, ResultJournal::class], version = 1, exportSchema = false)
 abstract class JournalRoomDatabase : RoomDatabase() {
     abstract fun journalDao(): JournalDao
     abstract fun quizDao(): QuizDao
@@ -22,27 +22,12 @@ abstract class JournalRoomDatabase : RoomDatabase() {
             if (INSTANCE == null) {
                 synchronized(JournalRoomDatabase::class.java) {
                     INSTANCE = Room.databaseBuilder(context.applicationContext,
-                        JournalRoomDatabase::class.java, "history_database")
-                        .addMigrations(com.example.buddyapp.data.local.MIGRATION_1_2)
+                        JournalRoomDatabase::class.java, "journal_database")
                         .build()
                 }
             }
             return INSTANCE as JournalRoomDatabase
         }
-    }
-}
-
-val MIGRATION_1_2 = object : Migration(1, 2) {
-    override fun migrate(database: SupportSQLiteDatabase) {
-        // Membuat tabel 'quiz' dengan kolom yang sesuai
-        database.execSQL("""
-            CREATE TABLE IF NOT EXISTS `quiz` (
-                `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
-                `title` TEXT, 
-                `description` TEXT, 
-                `date` TEXT     
-            )
-        """)
     }
 }
 

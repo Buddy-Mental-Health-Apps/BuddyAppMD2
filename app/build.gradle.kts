@@ -73,6 +73,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx.v287)
     implementation(libs.androidx.lifecycle.livedata.ktx.v287)
     implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
 
     // Library Glide

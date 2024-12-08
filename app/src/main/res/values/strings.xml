@@ -84,6 +84,7 @@
     <string name="button_submit">Selesai</string>
     <string name="toolbar_text_quiz">Tes Kesehatan Mental</string>
     <string name="description_quiz">Dalam dua minggu terakhir, seberapa sering Anda merasa terganggu oleh masalah berikut ini?</string>
+    <string name="cancel_delete">Tidak</string>
 
     <!-- String Result Page -->
     <string name="result_title">Hasil akan tampil disini</string>

@@ -1,5 +1,6 @@
 package com.example.buddyapp.ui.journal
 
+import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -13,7 +14,6 @@ import com.example.buddyapp.helper.JournalDiffCallback
 
 class JournalAdapter : RecyclerView.Adapter<JournalAdapter.JournalViewHolder>() {
 
-    /* Membandingkan list lama dengan list baru (Menggantikan NotifyDataSetChanged) */
     private val listJournal = ArrayList<Journal>()
     fun setListJournal(listJournal: List<Journal>) {
         val diffCallback = JournalDiffCallback(this.listJournal, listJournal)
@@ -46,6 +46,11 @@ class JournalAdapter : RecyclerView.Adapter<JournalAdapter.JournalViewHolder>() 
                     .into(imgItemImage)
                 tvItemDesc.text = journal.description
                 tvTimestamp.text = journal.timestamp
+                cvItemJournal.setOnClickListener {
+                    val intent = Intent(itemView.context, DetailJournalActivity::class.java)
+                    intent.putExtra(DetailJournalActivity.EXTRA_JOURNAL, journal)
+                    it.context.startActivity(intent)
+                }
             }
         }
     }

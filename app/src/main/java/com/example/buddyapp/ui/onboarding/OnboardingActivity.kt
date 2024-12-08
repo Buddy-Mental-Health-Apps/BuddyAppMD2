@@ -33,7 +33,7 @@ class OnboardingActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         if (v?.id == R.id.btn_mulai) {
             CoroutineScope(Dispatchers.Main).launch {
-                userPreference.setFirstTimeStatus()
+                userPreference.setNotFirstTimeStatus()
             }
             val intent = Intent(this, AuthenticationActivity::class.java)
             startActivity(intent)

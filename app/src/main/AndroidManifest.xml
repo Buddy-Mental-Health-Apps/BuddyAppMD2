@@ -17,6 +17,9 @@
         android:theme="@style/Theme.BuddyApp"
         tools:targetApi="31">
         <activity
+            android:name=".ui.journal.ResultJournalActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.quiz.QuizDetailActivity"
             android:exported="false"
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"/>
@@ -25,14 +28,16 @@
             android:exported="false"
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
         <activity
-            android:name=".ui.quiz.QuizActivity"
-            android:exported="false"
-            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
-        <activity
-            android:name=".authentication.AuthenticationActivity"
+            android:name=".ui.journal.JournalActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.onboarding.OnboardingActivity"
+            android:name=".ui.journal.WriteJournalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.journal.DetailJournalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.LauncherActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -40,6 +45,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.onboarding.WelcomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.quiz.QuizActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
+        <activity
+            android:name=".ui.quiz.ResultActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Auth" />
+        <activity
+            android:name=".authentication.AuthenticationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.onboarding.OnboardingActivity"
+            android:exported="false" />
         <activity
             android:name=".authentication.RegisterActivity"
             android:exported="false"

@@ -1,12 +1,12 @@
 package com.example.buddyapp.ui.journal
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.buddyapp.R
 import com.example.buddyapp.databinding.FragmentJournalBinding
@@ -61,7 +61,8 @@ class JournalFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         if (v?.id == R.id.fab_new_journal) {
-            findNavController().navigate(R.id.action_navigation_story_to_writeJournalFragment)
+            val intent = Intent(requireActivity(), WriteJournalActivity::class.java)
+            startActivity(intent)
         }
     }
 }
