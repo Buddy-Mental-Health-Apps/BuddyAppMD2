@@ -3,7 +3,7 @@ package com.example.buddyapp.ui.quiz
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.buddyapp.data.api.QuestionsItem
+import com.example.buddyapp.data.api.response.QuestionsItem
 
 class QuizViewModel : ViewModel() {
     private val _questions = MutableLiveData<List<QuestionsItem>>()

@@ -132,7 +132,7 @@ class QuizFragment : Fragment() {
 
         optionYes.setOnClickListener {
             alertDialog.dismiss()
-            startActivity(Intent(requireContext(), ResultActivity::class.java))
+//            startActivity(Intent(requireContext(), ResultActivity::class.java))
         }
 
         optionBack.setOnClickListener {

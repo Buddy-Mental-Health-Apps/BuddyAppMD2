@@ -1,4 +1,4 @@
-package com.example.buddyapp.data.api
+package com.example.buddyapp.data.api.response
 
 data class LoginResponse(
     val loginResult: LoginResult? = null,

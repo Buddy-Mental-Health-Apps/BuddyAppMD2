@@ -7,7 +7,7 @@
     tools:context=".ui.journal.JournalFragment">
 
     <TextView
-        android:id="@+id/streak_jurnal"
+        android:id="@+id/streak_journal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/streak_jurnal"
@@ -26,7 +26,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/streak_jurnal_count"
+        android:id="@+id/streak_journal_count"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/integer"
@@ -42,7 +42,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/streak_jurnal" />
+        app:layout_constraintTop_toBottomOf="@id/streak_journal" />
 
     <TextView
         android:id="@+id/tv_your_journal_title"
@@ -55,7 +55,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/streak_jurnal_count" />
+        app:layout_constraintTop_toBottomOf="@id/streak_journal_count" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_journal"
@@ -64,7 +64,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:paddingBottom="70dp"
+        android:paddingBottom="65dp"
         app:layout_constraintTop_toBottomOf="@id/tv_your_journal_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -89,6 +89,8 @@
         android:text="@string/make_journal"
         android:paddingStart="32dp"
         android:paddingEnd="32dp"
+        android:paddingTop="0dp"
+        android:paddingBottom="0dp"
         android:textColor="@color/pink"
         app:backgroundTint="@color/orange"
         android:textAllCaps="false"

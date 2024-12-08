@@ -26,9 +26,12 @@ navigationSafeArgsGradlePlugin = "2.7.2"
 navigationUiKtx = "2.8.3"
 activity = "1.9.3"
 roomRuntime = "2.6.1"
+tensorflowLiteTaskText = "0.4.4"
 ucrop = "2.2.8"
 legacySupportV4 = "1.0.0"
 workRuntimeKtx = "2.7.1"
+tensorflowLiteSupport = "0.1.0"
+tensorflowLiteMetadata = "0.1.0"
 
 [libraries]
 android-activation = { module = "com.sun.mail:android-activation", version.ref = "androidMail" }
@@ -43,6 +46,7 @@ androidx-lifecycle-viewmodel-ktx-v261 = { module = "androidx.lifecycle:lifecycle
 androidx-lifecycle-viewmodel-ktx-v287 = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtxVersion" }
 androidx-navigation-safe-args-gradle-plugin = { module = "androidx.navigation:navigation-safe-args-gradle-plugin", version.ref = "navigationSafeArgsGradlePlugin" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomRuntime" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomRuntime" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
 androidx-work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "workRuntimeKtx" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
@@ -61,7 +65,10 @@ androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 material-v190 = { module = "com.google.android.material:material", version.ref = "materialVersion" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "converterGson" }
+tensorflow-lite-task-text = { module = "org.tensorflow:tensorflow-lite-task-text", version.ref = "tensorflowLiteTaskText" }
 ucrop = { module = "com.github.yalantis:ucrop", version.ref = "ucrop" }
+tensorflow-lite-support = { group = "org.tensorflow", name = "tensorflow-lite-support", version.ref = "tensorflowLiteSupport" }
+tensorflow-lite-metadata = { group = "org.tensorflow", name = "tensorflow-lite-metadata", version.ref = "tensorflowLiteMetadata" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

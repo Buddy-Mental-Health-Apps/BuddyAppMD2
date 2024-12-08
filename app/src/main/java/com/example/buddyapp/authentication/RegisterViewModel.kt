@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.buddyapp.data.ds.Register
 import com.example.buddyapp.data.ds.RegisterRepository
 import kotlinx.coroutines.launch
-import com.example.buddyapp.data.api.RegisterResponse
+import com.example.buddyapp.data.api.response.RegisterResponse
 
 class RegisterViewModel(private val registerRepository: RegisterRepository) : ViewModel() {
 

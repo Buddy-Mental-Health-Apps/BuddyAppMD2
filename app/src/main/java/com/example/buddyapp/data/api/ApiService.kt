@@ -1,8 +1,12 @@
 package com.example.buddyapp.data.api
 
-import com.example.buddyapp.data.api.survey.ResultResponse
-import com.example.buddyapp.data.api.survey.ResultsItem
-import retrofit2.http.Body
+import com.example.buddyapp.data.api.response.AnswersItem
+import com.example.buddyapp.data.api.response.CreateJournalResponse
+import com.example.buddyapp.data.api.response.LoginResponse
+import com.example.buddyapp.data.api.response.QuestionResponse
+import com.example.buddyapp.data.api.response.QuestionsItem
+import com.example.buddyapp.data.api.response.RegisterResponse
+import com.example.buddyapp.data.api.response.SubmitResponse
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
@@ -37,9 +41,16 @@ interface ApiService {
         @Part("answers") answers: List<AnswersItem>
     ): SubmitResponse
 
-    @GET("survey/results")
-    suspend fun result(
-        @Query("results") results: List<ResultsItem>
-    ) : ResultResponse
+    @POST("journal")
+    suspend fun createJournal(
+        @Part("userId") userId: String,
+        @Part("title") title: String,
+        @Part("content") content: String
+    ): CreateJournalResponse
+
+    @GET("journal/user/")
+    suspend fun getJournal(
+        @Query("userId") userId: String
+    ): List<CreateJournalResponse>
 }
 

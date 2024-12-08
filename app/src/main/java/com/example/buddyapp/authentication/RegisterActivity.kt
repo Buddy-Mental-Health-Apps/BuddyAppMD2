@@ -212,6 +212,8 @@ class RegisterActivity : AppCompatActivity() {
             ObjectAnimator.ofFloat(binding.passwordTextView, View.ALPHA, 1f).setDuration(100)
         val passwordEditTextLayout =
             ObjectAnimator.ofFloat(binding.passwordEditTextLayout, View.ALPHA, 1f).setDuration(100)
+        val infoTextView = ObjectAnimator.ofFloat(binding.infoTextView, View.ALPHA, 1f).setDuration(100)
+        val infoTextView2 = ObjectAnimator.ofFloat(binding.infoTextView2, View.ALPHA, 1f).setDuration(100)
         val signup = ObjectAnimator.ofFloat(binding.registerButton, View.ALPHA, 1f).setDuration(100)
 
         AnimatorSet().apply {
@@ -223,6 +225,8 @@ class RegisterActivity : AppCompatActivity() {
                 emailEditTextLayout,
                 passwordTextView,
                 passwordEditTextLayout,
+                infoTextView,
+                infoTextView2,
                 signup
             )
             startDelay = 100

@@ -38,6 +38,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        mlModelBinding = true
     }
 
     packagingOptions {
@@ -62,6 +63,8 @@ dependencies {
     implementation(libs.androidx.activity)
 //    implementation(libs.androidx.legacy.support.v4)
     implementation(libs.androidx.fragment.ktx)
+    implementation(libs.tensorflow.lite.support)
+    implementation(libs.tensorflow.lite.metadata)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -70,6 +73,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx.v287)
     implementation(libs.androidx.lifecycle.livedata.ktx.v287)
     implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
 
     // Library Glide

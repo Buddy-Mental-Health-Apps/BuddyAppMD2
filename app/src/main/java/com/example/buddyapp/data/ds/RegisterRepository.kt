@@ -2,7 +2,7 @@ package com.example.buddyapp.data.ds
 
 import android.util.Log
 import com.example.buddyapp.data.api.ApiService
-import com.example.buddyapp.data.api.RegisterResponse
+import com.example.buddyapp.data.api.response.RegisterResponse
 
 class RegisterRepository(private val apiService: ApiService) {
 

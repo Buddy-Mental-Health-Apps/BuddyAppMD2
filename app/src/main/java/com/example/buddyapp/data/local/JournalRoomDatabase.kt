@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Journal::class], version = 1, exportSchema = false)
+@Database(entities = [Journal::class, ResultJournal::class], version = 1, exportSchema = false)
 abstract class JournalRoomDatabase : RoomDatabase() {
     abstract fun journalDao(): JournalDao
 
@@ -18,7 +18,7 @@ abstract class JournalRoomDatabase : RoomDatabase() {
             if (INSTANCE == null) {
                 synchronized(JournalRoomDatabase::class.java) {
                     INSTANCE = Room.databaseBuilder(context.applicationContext,
-                        JournalRoomDatabase::class.java, "history_database")
+                        JournalRoomDatabase::class.java, "journal_database")
                         .build()
                 }
             }
