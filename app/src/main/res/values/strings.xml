@@ -85,4 +85,12 @@
     <string name="toolbar_text_quiz">Tes Kesehatan Mental</string>
     <string name="description_quiz">Dalam dua minggu terakhir, seberapa sering Anda merasa terganggu oleh masalah berikut ini?</string>
     <string name="cancel_delete">Tidak</string>
+
+    <!-- String Result Page -->
+    <string name="result_title">Hasil akan tampil disini</string>
+    <string name="date">Tanggal tes akan tampil disini</string>
+    <string name="result_desc">Deskripsi hasil akan muncul di sini.</string>
+    <string name="message_result">Kamu bisa mencari obat yang kamu perlukan, yuk cari obat sekarang!</string>
+    <string name="find_medicine_button">Cari Obat</string>
+    <string name="result_quiz_title">Hasil Test Kesehatan Mental</string>
 </resources>
