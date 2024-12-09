@@ -2,17 +2,24 @@ package com.example.buddyapp.ui.journal
 
 import android.app.Application
 import android.net.Uri
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.buddyapp.data.JournalRepository
 import com.example.buddyapp.data.local.Journal
+import com.example.buddyapp.data.local.JournalEntry
 import com.example.buddyapp.data.local.ResultJournal
+import com.example.buddyapp.data.preferences.JournalStreakPreference
 import kotlinx.coroutines.launch
+import java.time.Instant
+import java.time.LocalDate
+import java.time.ZoneId
+import java.time.temporal.ChronoUnit
 
-class JournalViewModel(application: Application) : ViewModel() {
+class JournalViewModel(application: Application) : AndroidViewModel(application) {
     private val mJournalRepository: JournalRepository = JournalRepository(application)
+    private val preference: JournalStreakPreference = JournalStreakPreference(application)
 
     private val _imageUri = MutableLiveData<Uri>()
     val imageUri: MutableLiveData<Uri> get() = _imageUri
@@ -98,6 +105,71 @@ class JournalViewModel(application: Application) : ViewModel() {
         viewModelScope.launch {
             val resultJournal = mJournalRepository.getResultJournal(journalId)
             _resultJournal.postValue(resultJournal)
+        }
+    }
+
+    fun getCurrentStreak(): Int {
+        return preference.getCurrentStreak()
+    }
+
+    fun getHighestStreak(): Int {
+        return preference.getHighestStreak()
+    }
+
+    private fun calculateStreak(lastJournalDate: LocalDate?, currentDate: LocalDate): Int {
+        val previousStreak = getCurrentStreak()
+        val highestStreak = getHighestStreak()
+
+        val newStreak = if (lastJournalDate == null || ChronoUnit.DAYS.between(lastJournalDate, currentDate) > 1) {
+            1
+        } else if (ChronoUnit.DAYS.between(lastJournalDate, currentDate) == 1L) {
+            previousStreak + 1
+        } else {
+            previousStreak
+        }
+
+        if (newStreak > highestStreak) {
+            preference.saveHighestStreak(newStreak)
+        }
+
+        preference.saveCurrentStreak(newStreak)
+
+        return newStreak
+    }
+
+    fun updateJournalStreak() {
+        viewModelScope.launch {
+            val lastJournalDateMillis = mJournalRepository.getLastJournalDate()
+            val lastJournalDate = lastJournalDateMillis?.let { Instant.ofEpochMilli(it).atZone(
+                ZoneId.systemDefault()).toLocalDate() }
+            val currentDate = LocalDate.now()
+
+            val currentStreak = calculateStreak(lastJournalDate, currentDate)
+            preference.saveCurrentStreak(currentStreak)
+        }
+    }
+
+    fun resetStreakIfMidnight() {
+        val lastUpdatedDateMillis = preference.getLastUpdatedDate()
+
+        val lastUpdatedDate = Instant.ofEpochMilli(lastUpdatedDateMillis)
+            .atZone(ZoneId.systemDefault())
+            .toLocalDate()
+        val currentDate = LocalDate.now()
+
+        if (ChronoUnit.DAYS.between(lastUpdatedDate, currentDate) > 1) {
+            preference.saveCurrentStreak(0)
+            preference.saveLastUpdatedDate(System.currentTimeMillis())
+        } else if (ChronoUnit.DAYS.between(lastUpdatedDate, currentDate) == 1L) {
+            preference.saveLastUpdatedDate(System.currentTimeMillis())
+        }
+    }
+
+    fun getAllJournalsHistory(): LiveData<List<JournalEntry>> = mJournalRepository.allJournalsHistory
+
+    fun addJournalHistory(date: String?, title: String?) {
+        viewModelScope.launch {
+            mJournalRepository.insertJournalHistory(JournalEntry(date = date, title = title))
         }
     }
 }

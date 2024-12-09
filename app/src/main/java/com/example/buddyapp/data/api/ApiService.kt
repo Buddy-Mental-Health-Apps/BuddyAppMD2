@@ -52,7 +52,7 @@ interface ApiService {
         @Query("query") query: String
     ): MedicineResponse
 
-    @GET("drug-store/medicines/{name}")
+    @GET("drug-store/medicines?{name}")
     suspend fun getMedicineDetail(
         @Path("name") name: String
     ): DetailMedicineResponse

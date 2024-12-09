@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import com.example.buddyapp.data.local.Journal
 import com.example.buddyapp.data.local.JournalDao
 import com.example.buddyapp.data.local.BuddyRoomDatabase
+import com.example.buddyapp.data.local.JournalEntry
 import com.example.buddyapp.data.local.ResultJournal
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -60,4 +61,13 @@ class JournalRepository(application: Application) {
         return mJournalDao.getResultJournal(journalId)
     }
 
+    suspend fun getLastJournalDate(): Long? {
+        return mJournalDao.getLastJournalDate()
+    }
+
+    val allJournalsHistory: LiveData<List<JournalEntry>> = mJournalDao.getAllJournalsHistory()
+
+    suspend fun insertJournalHistory(journalEntry: JournalEntry) {
+        mJournalDao.insertJournalHistory(journalEntry)
+    }
 }

@@ -52,6 +52,17 @@ class JournalFragment : Fragment(), View.OnClickListener {
         }
 
         binding.fabNewJournal.setOnClickListener(this)
+
+        val currentStreak = journalViewModel.getCurrentStreak()
+        binding.streakJournalCount.text = currentStreak.toString()
+
+        binding.streakJournal.setOnClickListener(this)
+        binding.streakJournalCount.setOnClickListener(this)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        journalViewModel.resetStreakIfMidnight()
     }
 
     override fun onDestroyView() {
@@ -60,9 +71,20 @@ class JournalFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        if (v?.id == R.id.fab_new_journal) {
-            val intent = Intent(requireActivity(), WriteJournalActivity::class.java)
-            startActivity(intent)
+        when (v?.id) {
+            R.id.fab_new_journal -> {
+                val intent = Intent(requireActivity(), WriteJournalActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.streak_journal -> {
+                val intent = Intent(requireActivity(), HistoryJournalActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.streak_journal_count -> {
+                val intent = Intent(requireActivity(), HistoryJournalActivity::class.java)
+                startActivity(intent)
+            }
+
         }
     }
 }

@@ -150,6 +150,7 @@ class WriteJournalActivity : AppCompatActivity() {
                         )
                     }
                     journalViewModel.insertJournal(journal)
+                    journalViewModel.addJournalHistory(journal?.timestamp, journal?.title)
                     showToast(getString(R.string.journal_saved))
                 }
                 showLoading(false)
@@ -170,6 +171,8 @@ class WriteJournalActivity : AppCompatActivity() {
             intent.putExtra(DetailJournalActivity.EXTRA_JOURNAL, journal)
             startActivity(intent)
             finish()
+
+            journalViewModel.updateJournalStreak()
         }
     }
 
