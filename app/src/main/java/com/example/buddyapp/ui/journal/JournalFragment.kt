@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.buddyapp.R
 import com.example.buddyapp.databinding.FragmentJournalBinding
-import com.example.dicodingevents.ui.ViewModelFactory
+import com.example.buddyapp.ui.ViewModelFactory
 
 class JournalFragment : Fragment(), View.OnClickListener {
 

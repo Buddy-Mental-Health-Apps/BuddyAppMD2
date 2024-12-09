@@ -14,7 +14,7 @@
     <fragment
         android:id="@+id/navigation_medicine"
         android:name="com.example.buddyapp.ui.medicine.MedicineFragment"
-        android:label="@string/find_medicine"
+        android:label="@string/obat"
         tools:layout="@layout/fragment_medicine" />
 
     <fragment

@@ -1,8 +1,10 @@
 package com.example.buddyapp.data.api
 
 import com.example.buddyapp.data.api.response.AnswersItem
-import com.example.buddyapp.data.api.response.CreateJournalResponse
+import com.example.buddyapp.data.api.response.DetailMedicineResponse
 import com.example.buddyapp.data.api.response.LoginResponse
+import com.example.buddyapp.data.api.response.MedicineResponse
+import com.example.buddyapp.data.api.response.MedicineResponseItem
 import com.example.buddyapp.data.api.response.QuestionResponse
 import com.example.buddyapp.data.api.response.QuestionsItem
 import com.example.buddyapp.data.api.response.RegisterResponse
@@ -12,6 +14,7 @@ import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Part
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
@@ -41,16 +44,17 @@ interface ApiService {
         @Part("answers") answers: List<AnswersItem>
     ): SubmitResponse
 
-    @POST("journal")
-    suspend fun createJournal(
-        @Part("userId") userId: String,
-        @Part("title") title: String,
-        @Part("content") content: String
-    ): CreateJournalResponse
+    @GET("drug-store/medicines")
+    suspend fun getAllMedicines(): List<MedicineResponseItem>
 
-    @GET("journal/user/")
-    suspend fun getJournal(
-        @Query("userId") userId: String
-    ): List<CreateJournalResponse>
+    @GET("drug-store/medicines")
+    suspend fun searchMedicine(
+        @Query("query") query: String
+    ): MedicineResponse
+
+    @GET("drug-store/medicines/{name}")
+    suspend fun getMedicineDetail(
+        @Path("name") name: String
+    ): DetailMedicineResponse
 }
 

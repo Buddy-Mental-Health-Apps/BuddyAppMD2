@@ -93,4 +93,5 @@
     <string name="message_result">Kamu bisa mencari obat yang kamu perlukan, yuk cari obat sekarang!</string>
     <string name="find_medicine_button">Cari Obat</string>
     <string name="result_quiz_title">Hasil Test Kesehatan Mental</string>
+    <string name="hi_home">Hi, %1$s!</string>
 </resources>

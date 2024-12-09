@@ -19,7 +19,7 @@ import com.example.buddyapp.data.local.Journal
 import com.example.buddyapp.data.local.ResultJournal
 import com.example.buddyapp.databinding.ActivityDetailJournalBinding
 import com.example.buddyapp.helper.journalAnalyzerHelper
-import com.example.dicodingevents.ui.ViewModelFactory
+import com.example.buddyapp.ui.ViewModelFactory
 
 class DetailJournalActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailJournalBinding
