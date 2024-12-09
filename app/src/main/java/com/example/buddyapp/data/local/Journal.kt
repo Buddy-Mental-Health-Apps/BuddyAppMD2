@@ -31,3 +31,11 @@ data class Journal(
     @ColumnInfo(name = "isAnalyzed")
     var isAnalyzed: Boolean = false
 ) : Parcelable
+
+@Entity(tableName = "journal_entries")
+data class JournalEntry(
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
+    val date: String?,
+    val title: String?
+)

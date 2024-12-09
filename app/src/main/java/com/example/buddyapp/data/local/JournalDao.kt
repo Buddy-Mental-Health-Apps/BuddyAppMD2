@@ -46,4 +46,9 @@ interface JournalDao {
     @Query("SELECT * from result_journal where id = :id")
     suspend fun getResultJournal(id: Int): ResultJournal
 
+    @Insert
+    suspend fun insertJournalHistory(journalEntry: JournalEntry)
+
+    @Query("SELECT * FROM journal_entries ORDER BY date ASC")
+    fun getAllJournalsHistory(): LiveData<List<JournalEntry>>
 }
