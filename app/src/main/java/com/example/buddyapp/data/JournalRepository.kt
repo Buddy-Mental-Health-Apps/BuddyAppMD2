@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import com.example.buddyapp.data.local.Journal
 import com.example.buddyapp.data.local.JournalDao
-import com.example.buddyapp.data.local.JournalRoomDatabase
+import com.example.buddyapp.data.local.BuddyRoomDatabase
 import com.example.buddyapp.data.local.ResultJournal
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -14,7 +14,7 @@ class JournalRepository(application: Application) {
     private val executorService: ExecutorService = Executors.newSingleThreadExecutor()
 
     init {
-        val db = JournalRoomDatabase.getDatabase(application)
+        val db = BuddyRoomDatabase.getDatabase(application)
         mJournalDao = db.journalDao()
     }
 

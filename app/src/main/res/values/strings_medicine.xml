@@ -7,4 +7,9 @@
     <string name="buy_now">Beli Sekarang</string>
     <string name="medicine_not_found">Obat $s belum tersedia</string>
     <string name="medicine_image">Foto Obat</string>
+    <string name="med_image">Gambar Obat</string>
+    <string name="med_name">Nama Obat</string>
+    <string name="med_price">Harga Obat</string>
+    <string name="med_desc_title">Deskripsi Obat</string>
+    <string name="more_info">Info Selengkapnya</string>
 </resources>

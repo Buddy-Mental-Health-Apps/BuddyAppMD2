@@ -1,4 +1,4 @@
-package com.example.dicodingevents.ui
+package com.example.buddyapp.ui
 
 import android.app.Application
 import androidx.lifecycle.ViewModel

@@ -15,8 +15,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.buddyapp.R
-import com.example.buddyapp.data.local.JournalRoomDatabase
-import com.example.buddyapp.data.local.Quiz
+import com.example.buddyapp.data.local.BuddyRoomDatabase
 import com.example.buddyapp.ui.quiz.HistoryItem
 import com.example.buddyapp.ui.quiz.HistoryQuizAdapter
 import com.example.buddyapp.ui.quiz.QuizActivity
@@ -37,7 +36,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         val name = sharedPref.getString("name", "Pengguna")
 
         val greetingTextView = root.findViewById<TextView>(R.id.greetingText)
-        greetingTextView.text = "Hi, $name!"
+        greetingTextView.text = getString(R.string.hi_home, name)
 
         val testButton = root.findViewById<Button>(R.id.testButton)
         testButton.setOnClickListener {
@@ -76,7 +75,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, true)
 
-        val quizDao = JournalRoomDatabase.getDatabase(requireContext()).quizDao()
+        val quizDao = BuddyRoomDatabase.getDatabase(requireContext()).quizDao()
 
         // Inisialisasi adapter kosong
         adapter = HistoryQuizAdapter(mutableListOf(), quizDao).apply {

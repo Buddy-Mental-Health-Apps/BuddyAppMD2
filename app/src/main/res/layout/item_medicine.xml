@@ -22,12 +22,12 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:adjustViewBounds="true"
-            android:scaleType="centerCrop"
+            android:scaleType="fitCenter"
             android:contentDescription="@string/medicine_image"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/avatars" />
+            android:src="@drawable/ic_medicine" />
 
         <TextView
             android:id="@+id/tv_item_name"
@@ -38,10 +38,29 @@
             android:layout_toEndOf="@id/img_item_photo"
             android:textSize="16sp"
             android:textStyle="bold"
+            android:textColor="@color/blue"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toEndOf="@+id/img_item_photo"
             card_view:layout_constraintTop_toTopOf="parent"
             tools:text="Nama Obat" />
+
+        <TextView
+            android:id="@+id/tv_item_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_toEndOf="@id/img_item_photo"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/orange"
+            android:ellipsize="end"
+            android:maxLines="2"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintStart_toEndOf="@+id/img_item_photo"
+            card_view:layout_constraintTop_toBottomOf="@+id/tv_item_name"
+            tools:text="Harga Obat" />
 
         <TextView
             android:id="@+id/tv_item_desc"
@@ -52,11 +71,12 @@
             android:layout_marginEnd="8dp"
             android:layout_toEndOf="@id/img_item_photo"
             android:textSize="12sp"
+            android:textColor="@color/blue"
             android:ellipsize="end"
-            android:maxLines="3"
+            android:maxLines="2"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toEndOf="@+id/img_item_photo"
-            card_view:layout_constraintTop_toBottomOf="@+id/tv_item_name"
+            card_view:layout_constraintTop_toBottomOf="@+id/tv_item_price"
             tools:text="Deskripsi Obat" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

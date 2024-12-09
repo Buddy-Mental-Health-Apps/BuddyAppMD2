@@ -5,9 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.buddyapp.MainActivity
-import com.example.buddyapp.data.local.JournalRoomDatabase
+import com.example.buddyapp.data.local.BuddyRoomDatabase
 import com.example.buddyapp.data.local.Quiz
-import com.example.buddyapp.data.local.QuizDao
 import com.example.buddyapp.databinding.ActivityResultBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -20,7 +19,7 @@ class ResultActivity : AppCompatActivity() {
     private lateinit var binding: ActivityResultBinding
 
     private fun saveQuizResult(title: String, description: String, date: String) {
-        val db = JournalRoomDatabase.getDatabase(applicationContext).quizDao()
+        val db = BuddyRoomDatabase.getDatabase(applicationContext).quizDao()
         val quiz = Quiz(title = title, description = description, date = date)
 
         // Menggunakan Coroutine untuk menulis ke database di latar belakang

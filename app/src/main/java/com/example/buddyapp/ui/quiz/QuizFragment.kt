@@ -1,7 +1,6 @@
 package com.example.buddyapp.ui.quiz
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +10,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.buddyapp.R
-import com.example.buddyapp.data.api.Answers
 import com.example.buddyapp.databinding.FragmentQuizBinding
 
 class QuizFragment : Fragment() {
@@ -42,7 +40,7 @@ class QuizFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding = FragmentQuizBinding.inflate(inflater, container, false)
 
         viewModel.questions.observe(viewLifecycleOwner) { questions ->
