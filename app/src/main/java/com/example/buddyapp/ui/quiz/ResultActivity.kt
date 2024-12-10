@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.example.buddyapp.MainActivity
 import com.example.buddyapp.data.local.BuddyRoomDatabase
 import com.example.buddyapp.data.local.Quiz
 import com.example.buddyapp.databinding.ActivityResultBinding
@@ -209,7 +208,6 @@ class ResultActivity : AppCompatActivity() {
 
         }
 
-
         // Toolbar back button
         binding.toolbarResult.setNavigationOnClickListener {
             finish()
@@ -221,10 +219,6 @@ class ResultActivity : AppCompatActivity() {
         }
 
         // Tombol "Kembali"
-        binding.backButton.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
+        binding.backButton.setOnClickListener { finish() }
     }
 }

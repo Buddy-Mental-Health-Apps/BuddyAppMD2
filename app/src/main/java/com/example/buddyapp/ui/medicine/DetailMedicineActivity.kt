@@ -43,8 +43,9 @@ class DetailMedicineActivity : AppCompatActivity(), View.OnClickListener {
         binding.tvName.text = medicine?.name
         binding.tvPrice.text = medicine?.price
         binding.tvDescription.text = medicine?.description
-        getMedicineImage(name)
+//        getMedicineImage(name)
         binding.btnLink.setOnClickListener(this)
+        binding.btnBack.setOnClickListener { finish() }
     }
 
     private fun getMedicineImage(name: String) {

@@ -26,6 +26,7 @@ import com.example.buddyapp.data.local.Journal
 import com.example.buddyapp.databinding.ActivityWriteJournalBinding
 import com.example.buddyapp.helper.DateHelper
 import com.example.buddyapp.ui.ViewModelFactory
+import com.example.buddyapp.ui.journal.DetailJournalActivity.Companion
 import com.yalantis.ucrop.UCrop
 import java.io.File
 
@@ -97,8 +98,12 @@ class WriteJournalActivity : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        showBackAlertDialog()
+    }
+
     private fun saveJournal() {
-        showLoading(true)
         val title = binding.etJournalTitle.text.toString()
         val image = currentImageUri.toString()
         val description = binding.etJournalContent.text.toString()
@@ -123,6 +128,7 @@ class WriteJournalActivity : AppCompatActivity() {
                 showToast(getString(R.string.empty_journal_image))
             }
             else -> {
+                showLoading(true)
                 if (isUpdate) {
                     val journal = journal?.let {
                         Journal(
@@ -153,7 +159,6 @@ class WriteJournalActivity : AppCompatActivity() {
                     journalViewModel.addJournalHistory(journal?.timestamp, journal?.title)
                     showToast(getString(R.string.journal_saved))
                 }
-                showLoading(false)
             }
         }
     }
@@ -163,16 +168,17 @@ class WriteJournalActivity : AppCompatActivity() {
             val title = binding.etJournalTitle.text.toString()
             val description = binding.etJournalContent.text.toString()
             val imageUri = currentImageUri.toString()
-            val initialTimestamp = journal?.initialTimestamp
+            val initialTimestamp = System.currentTimeMillis()
             val isAnalyzed = false
             val journal = Journal(id = journalId, title = title, description = description, image = imageUri, initialTimestamp = initialTimestamp, isAnalyzed = isAnalyzed)
 
+            showLoading(false)
             val intent = Intent(this, DetailJournalActivity::class.java)
             intent.putExtra(DetailJournalActivity.EXTRA_JOURNAL, journal)
             startActivity(intent)
             finish()
 
-            journalViewModel.updateJournalStreak()
+            journalViewModel.writeJournal(initialTimestamp.toString())
         }
     }
 

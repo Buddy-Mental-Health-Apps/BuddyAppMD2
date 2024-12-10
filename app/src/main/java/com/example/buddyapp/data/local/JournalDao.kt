@@ -51,4 +51,18 @@ interface JournalDao {
 
     @Query("SELECT * FROM journal_entries ORDER BY date ASC")
     fun getAllJournalsHistory(): LiveData<List<JournalEntry>>
+
+
+    // STREAK JURNAL
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertOrUpdateJournal(journalStreak: JournalStreak)
+
+//    @Query("SELECT * FROM journal_streak ORDER BY date ASC")
+//    suspend fun getAllJournals(): List<Journal>
+
+    @Query("SELECT * FROM journal_streak WHERE date = :date LIMIT 1")
+    suspend fun getStreaksForDate(date: String): JournalStreak?
+
+    @Query("SELECT MAX(currentStreak) FROM journal_streak")
+    suspend fun getHighestStreak(): Int
 }
