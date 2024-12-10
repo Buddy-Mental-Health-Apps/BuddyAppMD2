@@ -2,12 +2,8 @@ package com.example.buddyapp.ui
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.buddyapp.MainActivity
-import com.example.buddyapp.R
 import com.example.buddyapp.authentication.AuthenticationActivity
 import com.example.buddyapp.data.ds.UserPreference
 import com.example.buddyapp.data.ds.dataStore

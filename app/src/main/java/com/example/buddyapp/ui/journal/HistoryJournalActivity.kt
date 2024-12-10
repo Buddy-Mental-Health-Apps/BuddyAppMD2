@@ -1,8 +1,10 @@
 package com.example.buddyapp.ui.journal
 
 import android.app.Application
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.activity.viewModels
@@ -27,14 +29,30 @@ class HistoryJournalActivity : AppCompatActivity() {
         journalViewModel.getAllJournalsHistory().observe(this) { history ->
             val adapter = HistoryJournalAdapter(history)
             binding.rvJournalHistory.adapter = adapter
+            if (history.isEmpty()) {
+                binding.ivBuddyEmptyJournal.visibility = View.VISIBLE
+                binding.btnWriteJournal.visibility = View.VISIBLE
+            } else {
+                binding.ivBuddyEmptyJournal.visibility = View.GONE
+                binding.btnWriteJournal.visibility = View.GONE
+            }
         }
 
-        val currentStreak = journalViewModel.getCurrentStreak()
-        val highestStreak = journalViewModel.getHighestStreak()
-        binding.tvCurrentStreak.text = currentStreak.toString()
-        binding.tvHighestStreak.text = highestStreak.toString()
+        journalViewModel.getStreakData()
+        journalViewModel.currentStreak.observe(this) { currentStreak ->
+            binding.tvCurrentStreak.text = currentStreak.toString()
+        }
+
+        journalViewModel.highestStreak.observe(this) { highestStreak ->
+            binding.tvHighestStreak.text = highestStreak.toString()
+        }
 
         binding.btnBack.setOnClickListener{ finish() }
+        binding.btnWriteJournal.setOnClickListener {
+            val intent = Intent(this, WriteJournalActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun setupView() {

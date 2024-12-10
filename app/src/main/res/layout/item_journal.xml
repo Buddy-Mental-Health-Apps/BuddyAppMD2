@@ -30,7 +30,7 @@
                 android:adjustViewBounds="true"
                 android:layout_marginBottom="8dp"
                 android:contentDescription="@string/gambar_jurnal"
-                tools:srcCompat="@tools:sample/backgrounds/scenic" />
+                android:src="@drawable/default_image_buddy"/>
 
             <TextView
                 android:id="@+id/tv_item_title"

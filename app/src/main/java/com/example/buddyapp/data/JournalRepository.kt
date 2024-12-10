@@ -6,6 +6,7 @@ import com.example.buddyapp.data.local.Journal
 import com.example.buddyapp.data.local.JournalDao
 import com.example.buddyapp.data.local.BuddyRoomDatabase
 import com.example.buddyapp.data.local.JournalEntry
+import com.example.buddyapp.data.local.JournalStreak
 import com.example.buddyapp.data.local.ResultJournal
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -69,5 +70,29 @@ class JournalRepository(application: Application) {
 
     suspend fun insertJournalHistory(journalEntry: JournalEntry) {
         mJournalDao.insertJournalHistory(journalEntry)
+    }
+
+    // STREAK JURNAL
+    suspend fun writeJournal(date: String) {
+        val previousJournal = mJournalDao.getStreaksForDate(date) // Check for previous entry
+
+        if (previousJournal == null || !previousJournal.isJournaled) {
+            val currentStreak = if (previousJournal?.isJournaled == true) {
+                previousJournal.currentStreak + 1
+            } else {
+                1
+            }
+
+            val journal = JournalStreak(date, isJournaled = true, currentStreak = currentStreak)
+            mJournalDao.insertOrUpdateJournal(journal)
+        }
+    }
+
+    suspend fun getStreakData(date: String): JournalStreak {
+        return mJournalDao.getStreaksForDate(date) ?: JournalStreak(date, isJournaled = false, currentStreak = 0)
+    }
+
+    suspend fun getHighestStreak(): Int {
+        return mJournalDao.getHighestStreak()
     }
 }

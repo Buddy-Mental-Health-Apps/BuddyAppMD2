@@ -39,3 +39,11 @@ data class JournalEntry(
     val date: String?,
     val title: String?
 )
+
+@Entity(tableName = "journal_streak")
+data class JournalStreak(
+    @PrimaryKey
+    val date: String,
+    val isJournaled: Boolean = false,
+    val currentStreak: Int = 0
+)

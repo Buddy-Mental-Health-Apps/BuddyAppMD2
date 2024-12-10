@@ -46,6 +46,7 @@ class DetailJournalActivity : AppCompatActivity() {
             journal?.let { journal ->
                 Glide.with(this)
                     .load(journal.image)
+                    .placeholder(R.drawable.default_image_buddy)
                     .into(binding.ivJournalCover)
                 binding.tvJournalTitle.text = journal.title
                 binding.tvJournalContent.text = journal.description
@@ -57,8 +58,8 @@ class DetailJournalActivity : AppCompatActivity() {
         binding.fabEdit.setOnClickListener {
             val intent = Intent(this, WriteJournalActivity::class.java)
             intent.putExtra(EXTRA_JOURNAL, journal)
+            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
             startActivity(intent)
-            finish()
         }
     }
 

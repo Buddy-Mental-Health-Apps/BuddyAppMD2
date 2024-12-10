@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".ui.quiz.ResultActivity">
 
@@ -28,6 +28,34 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/result_quiz_title"
+            android:layout_marginLeft="25dp"
+            android:textColor="@color/blue"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_medicine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:elevation="4dp"
+        android:visibility="gone">
+
+        <ImageButton
+            android:id="@+id/btn_back_medicine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/back"
+            android:src="@drawable/arrow_back" />
+
+        <TextView
+            android:id="@+id/medicine_toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/find_medicine"
             android:layout_marginLeft="25dp"
             android:textColor="@color/blue"
             android:textSize="18sp"
@@ -119,6 +147,12 @@
         </LinearLayout>
     </ScrollView>
 
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
     <ProgressBar
         android:id="@+id/pBar"
         style="?android:attr/progressBarStyle"
@@ -127,4 +161,5 @@
         android:visibility="gone"
         android:indeterminate="true"
         android:indeterminateTint="@color/blue" />
+
 </LinearLayout>

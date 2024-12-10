@@ -53,16 +53,16 @@ class JournalFragment : Fragment(), View.OnClickListener {
 
         binding.fabNewJournal.setOnClickListener(this)
 
-        val currentStreak = journalViewModel.getCurrentStreak()
-        binding.streakJournalCount.text = currentStreak.toString()
-
         binding.streakJournal.setOnClickListener(this)
         binding.streakJournalCount.setOnClickListener(this)
     }
 
     override fun onResume() {
         super.onResume()
-        journalViewModel.resetStreakIfMidnight()
+        journalViewModel.getStreakData()
+        journalViewModel.currentStreak.observe(this) { currentStreak ->
+            binding.streakJournalCount.text = currentStreak.toString()
+        }
     }
 
     override fun onDestroyView() {

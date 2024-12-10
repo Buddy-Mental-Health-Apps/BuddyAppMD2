@@ -42,7 +42,7 @@ class JournalAdapter : RecyclerView.Adapter<JournalAdapter.JournalViewHolder>() 
                 val imageUri = Uri.parse(journal.image)
                 Glide.with(imgItemImage.context)
                     .load(imageUri)
-                    .placeholder(R.drawable.baseline_image_24)
+                    .placeholder(R.drawable.default_image_buddy)
                     .into(imgItemImage)
                 tvItemDesc.text = journal.description
                 tvTimestamp.text = journal.timestamp
