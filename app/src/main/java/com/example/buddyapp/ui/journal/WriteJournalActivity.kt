@@ -26,7 +26,6 @@ import com.example.buddyapp.data.local.Journal
 import com.example.buddyapp.databinding.ActivityWriteJournalBinding
 import com.example.buddyapp.helper.DateHelper
 import com.example.buddyapp.ui.ViewModelFactory
-import com.example.buddyapp.ui.journal.DetailJournalActivity.Companion
 import com.yalantis.ucrop.UCrop
 import java.io.File
 
