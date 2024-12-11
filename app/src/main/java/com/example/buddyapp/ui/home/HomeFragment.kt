@@ -1,6 +1,5 @@
 package com.example.buddyapp.ui.home
 
-import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,19 +10,26 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.buddyapp.R
+import com.example.buddyapp.data.ds.UserPreference
+import com.example.buddyapp.data.ds.dataStore
 import com.example.buddyapp.data.local.BuddyRoomDatabase
 import com.example.buddyapp.ui.quiz.HistoryItem
 import com.example.buddyapp.ui.quiz.HistoryQuizAdapter
 import com.example.buddyapp.ui.quiz.QuizActivity
 import com.example.buddyapp.ui.quiz.QuizDetailActivity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private lateinit var adapter: HistoryQuizAdapter
+    private lateinit var userPreference: UserPreference
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,12 +37,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         savedInstanceState: Bundle?
     ): View {
         val root = inflater.inflate(R.layout.fragment_home, container, false)
+        userPreference = UserPreference.getInstance(requireContext().dataStore)
 
-        val sharedPref = requireContext().getSharedPreferences("UserPrefs", MODE_PRIVATE)
-        val name = sharedPref.getString("name", "Pengguna")
+        CoroutineScope(Dispatchers.Main).launch {
+            val name = userPreference.getName().first()
 
-        val greetingTextView = root.findViewById<TextView>(R.id.greetingText)
-        greetingTextView.text = getString(R.string.hi_home, name)
+            val greetingTextView = root.findViewById<TextView>(R.id.greetingText)
+            greetingTextView.text =  "Hi, $name!"
+        }
 
         val testButton = root.findViewById<Button>(R.id.testButton)
         testButton.setOnClickListener {
@@ -91,7 +99,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         recyclerView.adapter = adapter
 
         // Mengamati perubahan data Quiz menggunakan LiveData
-        quizDao.getAllQuiz().observe(viewLifecycleOwner, Observer { quizList ->
+        quizDao.getAllQuiz().observe(viewLifecycleOwner) { quizList ->
             if (quizList.isNullOrEmpty()) {
                 recyclerView.visibility = View.GONE
                 noDataImageView.visibility = View.VISIBLE
@@ -104,11 +112,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     HistoryItem(
                         date = quiz.date ?: "No date",
                         title = quiz.title ?: "Untitled",
-                        description = quiz.description?: "No Description"
+                        description = quiz.description ?: "No Description"
                     )
                 }
                 adapter.updateData(historyItems)
             }
-        })
+        }
     }
 }

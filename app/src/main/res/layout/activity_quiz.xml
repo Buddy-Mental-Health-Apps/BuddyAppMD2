@@ -45,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/quiz_title"
-            android:layout_marginLeft="25dp"
+            android:layout_marginStart="25dp"
             android:textColor="@color/blue"
             android:textSize="18sp"
             android:textStyle="bold" />

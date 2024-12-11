@@ -7,17 +7,14 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.buddyapp.R
 import com.example.buddyapp.data.local.Medicine
 import com.example.buddyapp.databinding.ActivityDetailMedicineBinding
-import com.example.buddyapp.ui.MedicineViewModelFactory
 
 class DetailMedicineActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityDetailMedicineBinding
-    private val viewModel: MedicineViewModel by viewModels { MedicineViewModelFactory.getInstance(this) }
 
     private lateinit var name: String
     private var price: String? = null

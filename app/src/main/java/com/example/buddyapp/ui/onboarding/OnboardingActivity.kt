@@ -4,9 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ContentInfoCompat.Flags
 import com.example.buddyapp.R
-import com.example.buddyapp.authentication.AuthenticationActivity
+import com.example.buddyapp.ui.authentication.AuthenticationActivity
 import com.example.buddyapp.data.ds.UserPreference
 import com.example.buddyapp.data.ds.dataStore
 import com.example.buddyapp.databinding.ActivityOnboardingBinding

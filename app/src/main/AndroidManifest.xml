@@ -26,17 +26,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".authentication.AuthenticationActivity"
+            android:name=".ui.authentication.AuthenticationActivity"
             android:exported="false" />
         <activity
             android:name=".ui.onboarding.OnboardingActivity"
             android:exported="false" />
         <activity
-            android:name=".authentication.RegisterActivity"
+            android:name=".ui.authentication.RegisterActivity"
             android:exported="false"
             android:theme="@style/Theme.Auth" />
         <activity
-            android:name=".authentication.LoginActivity"
+            android:name=".ui.authentication.LoginActivity"
             android:exported="false"
             android:theme="@style/Theme.Auth" />
         <activity

@@ -3,7 +3,7 @@ package com.example.buddyapp.data.viewmodelfactory
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.buddyapp.authentication.LoginViewModel
+import com.example.buddyapp.ui.authentication.LoginViewModel
 import com.example.buddyapp.data.api.ApiService
 import com.example.buddyapp.data.di.Injection
 import com.example.buddyapp.data.ds.UserRepository

@@ -15,6 +15,7 @@ import android.view.WindowManager
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -44,6 +45,24 @@ class WriteJournalActivity : AppCompatActivity() {
         binding = ActivityWriteJournalBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupView()
+
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (binding.etJournalTitle.text.toString().isEmpty() &&
+                    binding.etJournalContent.text.toString().isEmpty() &&
+                    currentImageUri == null) {
+                    finish()
+                } else {
+                    if (isUpdate) {
+                        val intent = Intent(this@WriteJournalActivity, DetailJournalActivity::class.java)
+                        intent.putExtra(DetailJournalActivity.EXTRA_JOURNAL, journal)
+                        startActivity(intent)
+                        finish()
+                    }
+                    showBackAlertDialog()
+                }
+            }
+        })
 
         val titleEditText = binding.etJournalTitle
         val backButton = binding.btnBack
@@ -95,11 +114,6 @@ class WriteJournalActivity : AppCompatActivity() {
                     .show()
             }
         }
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
-        showBackAlertDialog()
     }
 
     private fun saveJournal() {

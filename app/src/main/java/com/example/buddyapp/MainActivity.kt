@@ -16,7 +16,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.buddyapp.authentication.AuthenticationActivity
+import com.example.buddyapp.ui.authentication.AuthenticationActivity
 import com.example.buddyapp.data.ds.UserPreference
 import com.example.buddyapp.data.ds.dataStore
 import com.example.buddyapp.databinding.ActivityMainBinding

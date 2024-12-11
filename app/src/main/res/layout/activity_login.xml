@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -10,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".authentication.LoginActivity">
+        tools:context=".ui.authentication.LoginActivity">
 
         <ProgressBar
             android:id="@+id/pBar"
@@ -115,7 +114,7 @@
             app:layout_constraintTop_toBottomOf="@+id/passwordTextView"
             app:startIconDrawable="@drawable/password_icon">
 
-            <com.example.buddyapp.authentication.PasswordEditText
+            <com.example.buddyapp.ui.authentication.PasswordEditText
                 android:id="@+id/ed_login_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

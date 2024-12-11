@@ -1,13 +1,10 @@
 <resources>
-    <string name="app_name">BuddyApp</string>
-    <string name="slogan">Stay Happy, Your Bestie ALways Steady!</string>
+    <string name="app_name">Buddy</string>
     <string name="title_home">Beranda</string>
-    <string name="title_psikolog">Psikolog</string>
     <string name="title_story">Jurnal</string>
     <string name="logout">Keluar</string>
     <string name="auth_title">Masuk atau Daftar</string>
     <string name="auth_desc">Supaya Buddy bisa lebih kenal kamu, \nmasuk atau daftar dulu ya!</string>
-    <string name="register_desc">Belum punya akun? Yuk daftar sekarang</string>
     <string name="login">Masuk</string>
     <string name="name">Nama Lengkap</string>
     <string name="email">Email</string>
@@ -24,51 +21,32 @@
     <string name="text_button_test">Tes kesehatan mentalmu hari ini, yuk!</string>
     <string name="button_test">Tes Sekarang</string>
     <string name="history">Riwayat tes kesehatan mental</string>
-    <string name="search_bar_text">Masukkan daerah asalmu…</string>
-    <string name="psikolog_near">Psikolog terdekat kamu</string>
     <string name="login_text_start">Belum punya akun?   </string>
     <string name="login_text_end"><u>Daftar sekarang</u></string>
     <string name="register_text_start">Sudah punya akun?</string>
     <string name="register_text_end"><u>Masuk sekarang</u></string>
     <string name="skip">Lewati</string>
-    <string name="next">Selanjutnya</string>
-    <string name="before">Sebelumnya</string>
     <string name="buddy_halo">Buddy Halo</string>
     <string name="yuk_mulai">Yuk mulai!</string>
     <string name="start_now">Mulai Sekarang!</string>
     <string name="buddy_obat">Buddy Obat</string>
-    <string name="buddy_dokter">Buddy Dokter</string>
     <string name="buddy_story">Buddy Story</string>
-    <string name="finish">Selesai</string>
     <string name="buddy_kenalan">Buddy Kenalan</string>
     <string name="have_account">Sudah punya akun? Yuk masuk sekarang</string>
     <string name="make_account">Belum punya akun? Yuk daftar sekarang</string>
-    <string name="test_number">Soal Nomor 1</string>
-    <string name="test_question">Ketika Anda sedang berada di posisi tertekan, apa yang akan Anda rasakan?</string>
-    <string name="option1">Gelisah</string>
-    <string name="option2">Panik</string>
-    <string name="option3">Biasa saja</string>
-    <string name="option4">Senang</string>
-    <string name="next_button">Selanjutnya</string>
     <string name="question_ad">Tes kesehatan mental Kamu belum selesai. Tinggalkan tes?</string>
     <string name="option_yes">Ya</string>
     <string name="option_back">Kembali</string>
-    <string name="description_ad_register">Yey, Kamu sudah berhasil mendaftar! </string>
-    <string name="option_login_in_register">Masuk</string>
     <string name="description_ad_data_not_found">Semua kolom harus diisi dengan benar.</string>
     <string name="option_ok">OK</string>
-    <string name="description_ad_login">Yey, Kamu sudah berhasil masuk! </string>
-    <string name="option_next_in_login">Lanjut</string>
     <string name="quiz_title">Tes Kesehatan Mental</string>
     <string name="question_ad_answer_not_found">Tes dapat dilanjutkan jika soal sudah terjawab. Silakan pilih jawaban yang menurut Kamu benar.</string>
     <string name="question_ad_delete">Riwayat yang dihapus bersifat permanen, apakah Kamu yakin menghapus riwayat tes ini?</string>
     <string name="option_delete_yes">Hapus</string>
     <string name="question_ad_finish_test">Apakah kamu yakin untuk menyelesaikan tes ini?</string>
-    <string name="text_pass_or_email_wrong">Password atau Email Salah, Silakan Coba lagi.</string>
     <string name="timer">05:00</string>
     <string name="otp_code">Masukkan kode OTP</string>
     <string name="verification_btn">Verifikasi</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- String Quiz Page -->
     <string name="question">Soal Nomor</string>
@@ -82,7 +60,6 @@
     <string name="button_next_page">Selanjutnya</string>
     <string name="button_back_page">Kembali</string>
     <string name="button_submit">Selesai</string>
-    <string name="toolbar_text_quiz">Tes Kesehatan Mental</string>
     <string name="description_quiz">Dalam dua minggu terakhir, seberapa sering Anda merasa terganggu oleh masalah berikut ini?</string>
     <string name="cancel_delete">Tidak</string>
 
@@ -93,5 +70,4 @@
     <string name="message_result">Kamu bisa mencari obat yang kamu perlukan, yuk cari obat sekarang!</string>
     <string name="find_medicine_button">Cari Obat</string>
     <string name="result_quiz_title">Hasil Test Kesehatan Mental</string>
-    <string name="hi_home">Hi, %1$s!</string>
 </resources>

@@ -10,11 +10,7 @@
     <string name="journal_date">Tanggal Jurnal</string>
     <string name="history_journal_title">Judul jurnal: </string>
     <string name="timestamp">Timestamp</string>
-    <string name="string">%s</string>
     <string name="journal_content_hint">Bagaimana perasaanmu hari ini?</string>
-    <string name="bold">B</string>
-    <string name="italic">I</string>
-    <string name="underline"><u>U</u></string>
     <string name="journal_save">Simpan Jurnal</string>
     <string name="pick_image">Pilih Foto</string>
     <string name="crop_error">Terjadi error saat memotong gambar</string>
@@ -24,7 +20,6 @@
     <string name="see_result">Lihat Hasil Analisis Jurnal</string>
     <string name="edit_jurnal">Edit Jurnal</string>
     <string name="empty_journal">Jurnal Kosong</string>
-    <string name="field_must_be_filled">Judul, gambar, dan deskripsi tidak boleh kosong</string>
     <string name="journal_not_saved">Journal Belum Tersimpan</string>
     <string name="back_alert_description">Jika kembali sekarang, kamu akan kehilangan cerita yang sudah kamu buat.</string>
     <string name="continue_journal">Lanjutkan Cerita</string>

@@ -12,7 +12,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.lifecycleScope
 import com.example.buddyapp.MainActivity
 import com.example.buddyapp.R
@@ -75,7 +74,7 @@ class QuizActivity : AppCompatActivity(), QuizFragment.QuizSubmissionListener {
         pBar.visibility = View.VISIBLE
         // Pastikan kita memeriksa terlebih dahulu apakah questions ada
         val questions = viewModel.questions.value
-        if (questions != null && questions.isNotEmpty()) {
+        if (!questions.isNullOrEmpty()) {
             val fragment = QuizFragment.newInstance(index)
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, fragment)

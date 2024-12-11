@@ -63,6 +63,7 @@ class JournalFragment : Fragment(), View.OnClickListener {
         journalViewModel.currentStreak.observe(this) { currentStreak ->
             binding.streakJournalCount.text = currentStreak.toString()
         }
+        binding.rvJournal.layoutManager?.scrollToPosition(0)
     }
 
     override fun onDestroyView() {

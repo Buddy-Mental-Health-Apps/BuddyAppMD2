@@ -2,12 +2,6 @@ package com.example.buddyapp.data.api.survey
 
 import com.google.gson.annotations.SerializedName
 
-data class ResultResponse(
-
-	@field:SerializedName("results")
-	val results: List<ResultsItem?>? = null
-)
-
 data class Timestamp(
 	val any: Any? = null
 )

@@ -1,10 +1,9 @@
-package com.example.buddyapp.authentication
+package com.example.buddyapp.ui.authentication
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.example.buddyapp.MainActivity
 import com.example.buddyapp.R
 import com.example.buddyapp.databinding.ActivityAuthenticationBinding
 

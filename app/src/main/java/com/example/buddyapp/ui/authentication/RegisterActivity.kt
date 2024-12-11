@@ -1,4 +1,4 @@
-package com.example.buddyapp.authentication
+package com.example.buddyapp.ui.authentication
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
@@ -11,10 +11,9 @@ import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import com.example.buddyapp.R
-import com.example.buddyapp.authentication.otp.EmailSender
-import com.example.buddyapp.authentication.otp.OtpDialogFragment
+import com.example.buddyapp.ui.authentication.otp.EmailSender
+import com.example.buddyapp.ui.authentication.otp.OtpDialogFragment
 import com.example.buddyapp.data.api.ApiConfig
 import com.example.buddyapp.data.ds.Register
 import com.example.buddyapp.data.ds.RegisterRepository
@@ -47,7 +46,6 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun setupView() {
-        @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             window.insetsController?.hide(WindowInsets.Type.statusBars())
         } else {
@@ -101,7 +99,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun observeRegisterResponse() {
-        registerViewModel.registerResponse.observe(this, Observer { registerResponse ->
+        registerViewModel.registerResponse.observe(this) { registerResponse ->
             showLoading(false)
             binding.registerButton.isEnabled = true
 
@@ -116,7 +114,10 @@ class RegisterActivity : AppCompatActivity() {
                             if (emailAlreadyExists) {
                                 runOnUiThread {
                                     showLoading(false)
-                                    showAlertDialog(isSuccess = false, message = "Email sudah terdaftar. Silakan gunakan email lain.")
+                                    showAlertDialog(
+                                        isSuccess = false,
+                                        message = "Email sudah terdaftar. Silakan gunakan email lain."
+                                    )
                                     binding.registerButton.isEnabled = true
                                 }
                             } else {
@@ -132,7 +133,10 @@ class RegisterActivity : AppCompatActivity() {
                                 } catch (e: Exception) {
                                     runOnUiThread {
                                         showLoading(false)
-                                        showAlertDialog(isSuccess = false, message = "Gagal mengirim OTP: ${e.message}")
+                                        showAlertDialog(
+                                            isSuccess = false,
+                                            message = "Gagal mengirim OTP: ${e.message}"
+                                        )
                                         binding.registerButton.isEnabled = true
                                     }
                                 }
@@ -140,7 +144,10 @@ class RegisterActivity : AppCompatActivity() {
                         } catch (e: Exception) {
                             runOnUiThread {
                                 showLoading(false)
-                                showAlertDialog(isSuccess = false, message = "Terjadi kesalahan saat memeriksa email.")
+                                showAlertDialog(
+                                    isSuccess = false,
+                                    message = "Terjadi kesalahan saat memeriksa email."
+                                )
                                 binding.registerButton.isEnabled = true
                             }
                         }
@@ -153,13 +160,14 @@ class RegisterActivity : AppCompatActivity() {
                     editor.apply()
 
                 } else {
-                    val errorMessage = registerResponse.message ?: "Terjadi kesalahan. Silakan coba lagi."
+                    val errorMessage =
+                        registerResponse.message ?: "Terjadi kesalahan. Silakan coba lagi."
                     showAlertDialog(isSuccess = false, message = errorMessage)
                 }
             } ?: run {
                 showAlertDialog(isSuccess = false, message = "Response kosong. Silakan coba lagi.")
             }
-        })
+        }
     }
 
     // Metode untuk memeriksa apakah email sudah terdaftar

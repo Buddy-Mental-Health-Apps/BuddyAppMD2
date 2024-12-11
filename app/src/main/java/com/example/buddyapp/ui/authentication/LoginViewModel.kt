@@ -1,4 +1,4 @@
-package com.example.buddyapp.authentication
+package com.example.buddyapp.ui.authentication
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -38,7 +38,6 @@ class LoginViewModel(
                         )
                         repository.saveSession(userModel)
                         _loginResult.value = Result.success(userModel)
-
                         _apiMessage.value = response.message ?: "Login sukses"
 
 

@@ -4,15 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.example.buddyapp.MainActivity
 import com.example.buddyapp.R
-import com.example.buddyapp.authentication.AuthenticationActivity
+import com.example.buddyapp.ui.authentication.AuthenticationActivity
 import com.example.buddyapp.data.ds.UserPreference
-import com.example.buddyapp.data.ds.dataStore
 import com.example.buddyapp.databinding.ActivityWelcomeBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class WelcomeActivity : AppCompatActivity(), View.OnClickListener {

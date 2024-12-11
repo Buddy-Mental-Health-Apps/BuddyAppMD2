@@ -58,8 +58,8 @@ class DetailJournalActivity : AppCompatActivity() {
         binding.fabEdit.setOnClickListener {
             val intent = Intent(this, WriteJournalActivity::class.java)
             intent.putExtra(EXTRA_JOURNAL, journal)
-            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
             startActivity(intent)
+            finish()
         }
     }
 

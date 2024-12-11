@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".ui.quiz.ResultActivity">
 
@@ -28,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/result_quiz_title"
-            android:layout_marginLeft="25dp"
+            android:layout_marginStart="25dp"
             android:textColor="@color/blue"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -56,7 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/find_medicine"
-            android:layout_marginLeft="25dp"
+            android:layout_marginStart="25dp"
             android:textColor="@color/blue"
             android:textSize="18sp"
             android:textStyle="bold" />

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".authentication.RegisterActivity">
+    tools:context=".ui.authentication.RegisterActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -155,7 +155,7 @@
             app:boxStrokeColor="@color/grey"
             app:boxStrokeWidth="1dp">
 
-            <com.example.buddyapp.authentication.PasswordEditText
+            <com.example.buddyapp.ui.authentication.PasswordEditText
                 android:id="@+id/ed_register_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

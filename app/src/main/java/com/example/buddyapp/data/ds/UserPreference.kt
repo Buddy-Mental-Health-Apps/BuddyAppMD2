@@ -41,6 +41,7 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
 
     suspend fun logout() {
         dataStore.edit { preferences ->
+            preferences.remove(NAME_KEY)
             preferences.remove(EMAIL_KEY)
             preferences.remove(TOKEN_KEY)
             preferences.remove(IS_LOGIN_KEY)
@@ -73,31 +74,10 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         }
     }
 
-    // Menyimpan waktu login
-    suspend fun setLoginTime(time: Long) {
-        dataStore.edit { preferences ->
-            preferences[LOGIN_TIME_KEY] = time
-        }
-    }
-
     // Mendapatkan waktu login
     fun getLoginTime(): Flow<Long> {
         return dataStore.data.map { preferences ->
             preferences[LOGIN_TIME_KEY] ?: 0L
-        }
-    }
-
-    // Menyimpan status login
-    suspend fun setLoginStatus(isLoggedIn: Boolean) {
-        dataStore.edit { preferences ->
-            preferences[IS_LOGGED_IN_KEY] = isLoggedIn
-        }
-    }
-
-    // Mendapatkan status login
-    fun getLoginStatus(): Flow<Boolean> {
-        return dataStore.data.map { preferences ->
-            preferences[IS_LOGGED_IN_KEY] ?: false
         }
     }
 

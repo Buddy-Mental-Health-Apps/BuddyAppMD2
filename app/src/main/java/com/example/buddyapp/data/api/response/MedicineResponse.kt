@@ -2,12 +2,6 @@ package com.example.buddyapp.data.api.response
 
 import com.google.gson.annotations.SerializedName
 
-data class MedicineResponse(
-
-	@field:SerializedName("listMedicine")
-	val listMedicine: List<MedicineResponseItem>
-)
-
 data class MedicineResponseItem(
 
 	@field:SerializedName("price")

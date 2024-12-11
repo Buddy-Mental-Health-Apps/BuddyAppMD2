@@ -23,8 +23,8 @@ class HistoryQuizAdapter(
     var onItemClick: ((HistoryItem) -> Unit)? = null
 
     inner class HistoryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val dateTextView: TextView = view.findViewById(R.id.history_quiz_date)
-        val titleTextView: TextView = view.findViewById(R.id.result_tittle)
+        private val dateTextView: TextView = view.findViewById(R.id.history_quiz_date)
+        private val titleTextView: TextView = view.findViewById(R.id.result_tittle)
         val deleteIcon: ImageView = view.findViewById(R.id.img_delete_icon)
 
         fun bind(item: HistoryItem) {

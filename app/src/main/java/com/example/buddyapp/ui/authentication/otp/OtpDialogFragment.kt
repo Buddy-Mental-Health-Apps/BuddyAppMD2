@@ -1,4 +1,4 @@
-package com.example.buddyapp.authentication.otp
+package com.example.buddyapp.ui.authentication.otp
 
 import android.os.Bundle
 import android.os.CountDownTimer

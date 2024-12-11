@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- res/color/radio_button_selector.xml -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Warna saat RadioButton dipilih -->
     <item android:color="@color/blue" android:state_checked="true" />

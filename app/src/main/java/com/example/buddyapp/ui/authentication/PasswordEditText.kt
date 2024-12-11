@@ -1,4 +1,4 @@
-package com.example.buddyapp.authentication
+package com.example.buddyapp.ui.authentication
 
 
 import android.content.Context

@@ -1,4 +1,4 @@
-package com.example.buddyapp.authentication
+package com.example.buddyapp.ui.authentication
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
@@ -16,9 +16,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.buddyapp.MainActivity
 import com.example.buddyapp.R
+import com.example.buddyapp.data.ds.UserPreference
+import com.example.buddyapp.data.ds.dataStore
 import com.example.buddyapp.data.viewmodelfactory.ViewModelFactory
 import com.example.buddyapp.databinding.ActivityLoginBinding
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
@@ -27,11 +28,14 @@ class LoginActivity : AppCompatActivity() {
         ViewModelFactory.getInstance(this)
     }
     private lateinit var binding: ActivityLoginBinding
+    private lateinit var userPreference: UserPreference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        userPreference = UserPreference.getInstance(applicationContext.dataStore)
 
         setupView()
         setupAction()
@@ -94,9 +98,10 @@ class LoginActivity : AppCompatActivity() {
             viewModel.loginResult.collect { result ->
                 result?.let {
                     it.onSuccess { userModel ->
+                        userPreference.saveName(userModel.name)
                         viewModel.apiMessage.collect { message ->
                             message?.let {
-                                Toast.makeText(this@LoginActivity, it, Toast.LENGTH_LONG).show()
+                                Toast.makeText(this@LoginActivity, message, Toast.LENGTH_LONG).show()
                                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
                                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                                 startActivity(intent)
@@ -127,8 +132,6 @@ class LoginActivity : AppCompatActivity() {
             show()
         }
     }
-
-
 
     private fun showLoading(isLoading: Boolean) {
         binding.pBar.visibility = if (isLoading) View.VISIBLE else View.GONE
