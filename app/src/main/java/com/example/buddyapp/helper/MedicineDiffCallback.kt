@@ -16,6 +16,6 @@ class MedicineDiffCallback(
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
         val oldHistory = oldMedicineList[oldItemPosition]
         val newHistory = newMedicineList[newItemPosition]
-        return oldHistory.name == newHistory.name && oldHistory.price == newHistory.price && oldHistory.description == newHistory.description && oldHistory.url == newHistory.url
+        return oldHistory.imageUrl == newHistory.imageUrl && oldHistory.name == newHistory.name && oldHistory.price == newHistory.price && oldHistory.description == newHistory.description && oldHistory.url == newHistory.url
     }
 }

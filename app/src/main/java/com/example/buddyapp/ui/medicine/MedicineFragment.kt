@@ -40,6 +40,15 @@ class MedicineFragment : Fragment() {
         medicineAdapter = MedicineAdapter(arrayListOf())
         binding.rvMedicine.adapter = medicineAdapter
 
+        viewModel.listMedicine.observe(viewLifecycleOwner) { medicines ->
+            if (medicines.isNullOrEmpty()) {
+                binding.tvEventNotFound.visibility = View.VISIBLE
+            } else {
+                medicineAdapter.updateMedicineList(medicines)
+                binding.tvEventNotFound.visibility = View.GONE
+            }
+        }
+
         with(binding) {
             searchView.setupWithSearchBar(searchBar)
             searchView
@@ -60,15 +69,6 @@ class MedicineFragment : Fragment() {
                         false
                     }
                 }
-        }
-
-        viewModel.listMedicine.observe(viewLifecycleOwner) { medicines ->
-            medicineAdapter.updateMedicineList(medicines)
-            if (medicines.isNullOrEmpty()) {
-                binding.tvEventNotFound.visibility = View.VISIBLE
-            } else {
-                binding.tvEventNotFound.visibility = View.GONE
-            }
         }
 
         viewModel.isLoading.observe(viewLifecycleOwner) {
