@@ -1,6 +1,7 @@
 package com.example.buddyapp.data
 
 import com.example.buddyapp.data.api.ApiService
+import com.example.buddyapp.data.api.response.DetailMedResponseItem
 import com.example.buddyapp.data.api.response.MedicineResponseItem
 import com.example.buddyapp.data.local.Medicine
 import com.example.buddyapp.data.local.MedicineDao
@@ -12,6 +13,16 @@ class MedicineRepository(private val apiService: ApiService, private val medicin
         return withContext(Dispatchers.IO) {
             try {
                 apiService.getAllMedicines()
+            } catch (e: Exception) {
+                throw e
+            }
+        }
+    }
+
+    suspend fun getMedicineDetail(): List<DetailMedResponseItem> {
+        return withContext(Dispatchers.IO) {
+            try {
+                apiService.getMedicineDetail()
             } catch (e: Exception) {
                 throw e
             }

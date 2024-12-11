@@ -23,17 +23,23 @@ data class MedicineResponseItem(
 	val url: String
 )
 
-data class DetailMedicineResponse(
-
-	@field:SerializedName("name")
-	val name: String,
+data class DetailMedResponseItem(
 
 	@field:SerializedName("price")
 	val price: String,
 
-	@field:SerializedName("url")
-	val url: String,
-
 	@field:SerializedName("imageUrl")
 	val imageUrl: String,
+
+	@field:SerializedName("name")
+	val name: String,
+
+	@field:SerializedName("id")
+	val id: Any,
+
+	@field:SerializedName("category")
+	val category: String,
+
+	@field:SerializedName("url")
+	val url: String
 )

@@ -9,9 +9,6 @@ import kotlinx.parcelize.Parcelize
 @Entity(tableName = "medicine")
 @Parcelize
 data class Medicine(
-//    @PrimaryKey(autoGenerate = true)
-//    @field:SerializedName("medicineId")
-//    val medicineId: Int,
 
     @PrimaryKey
     @field:SerializedName("name")
@@ -24,6 +21,9 @@ data class Medicine(
     val url: String?,
 
     @field:SerializedName("description")
-    val description: String?
+    val description: String?,
+
+    @field:SerializedName("imageUrl")
+    val imageUrl: String?
 
 ) : Parcelable
