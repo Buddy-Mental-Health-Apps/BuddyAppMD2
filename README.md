@@ -1,9 +1,9 @@
-**Buddy: Mental Health Awareness Application**
+# **Buddy: Mental Health Awareness Application**
 
 _Description_
 
-The Buddy application is an application that focuses on helping reduce the number of teenagers in Indonesia experiencing mental health issues. 
-In the application there are 3 main features being developed, namely **a mental health test feature, a medicines information feature, and a journal feature**.
+Buddy is an Android application that focuses on helping teenagers maintain their mental health by acknowledging their mental health condition with a test and regulating their emotions with journaling. The main purpose of Buddy is to reduce the number of mental health issues among Indonesian teenagers, which is in line with the vision of "Indonesia Emas 2045," where today's teenagers' roles will be important.
+In the application, there are 3 main features being developed, namely **a mental health test feature, a medicines information feature, and a journal feature**.
 
 Buddy Implementation:
 1. Android Studio with Kotlin
@@ -17,6 +17,6 @@ Buddy Implementation:
 9. Animation
 10. etc.
 
-**Final Application**:
-![Virual Background Buddy (1)](https://github.com/user-attachments/assets/0bd06d8b-9ab5-41ea-aa05-ddc2636d7a7a)
+## **Final Application**:
+![Virtual Background Buddy (1)](https://github.com/user-attachments/assets/0bd06d8b-9ab5-41ea-aa05-ddc2636d7a7a)
 
