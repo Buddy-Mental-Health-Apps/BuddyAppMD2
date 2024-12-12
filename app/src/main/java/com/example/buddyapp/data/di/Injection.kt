@@ -6,6 +6,7 @@ import com.example.buddyapp.data.api.ApiService
 import com.example.buddyapp.data.ds.UserPreference
 import com.example.buddyapp.data.ds.UserRepository
 import com.example.buddyapp.data.ds.dataStore
+
 object Injection {
 
     // Menyediakan UserRepository menggunakan UserPreference

@@ -9,7 +9,8 @@ import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.example.buddyapp.databinding.FragmentOtpDialogBinding
 
-class OtpDialogFragment(private val correctOtp: String, private val onOtpVerified: () -> Unit) : DialogFragment() {
+class OtpDialogFragment(private val correctOtp: String, private val onOtpVerified: () -> Unit) :
+    DialogFragment() {
 
     private var _binding: FragmentOtpDialogBinding? = null
     private val binding get() = _binding!!
@@ -34,7 +35,11 @@ class OtpDialogFragment(private val correctOtp: String, private val onOtpVerifie
                 onOtpVerified()  // OTP verified successfully
                 dismiss()
             } else {
-                Toast.makeText(requireContext(), "Kode OTP salah! Silakan coba lagi.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Kode OTP salah! Silakan coba lagi.",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }

@@ -84,7 +84,11 @@ class JournalRepository(application: Application) {
     suspend fun getStreakData(date: String): JournalStreak {
         val streakData: JournalStreak
         val convertedDate = LocalDate.parse(date, DateTimeFormatter.ISO_DATE)
-        val lastStreak = mJournalDao.getLastStreak() ?: return JournalStreak(date, isJournaled = false, currentStreak = 0)
+        val lastStreak = mJournalDao.getLastStreak() ?: return JournalStreak(
+            date,
+            isJournaled = false,
+            currentStreak = 0
+        )
         val lastStreakDate = LocalDate.parse(lastStreak.date, DateTimeFormatter.ISO_DATE)
         val daysDifference = ChronoUnit.DAYS.between(lastStreakDate, convertedDate)
 
@@ -94,17 +98,6 @@ class JournalRepository(application: Application) {
         } else response ?: JournalStreak(date, isJournaled = false, currentStreak = 0)
         return streakData
     }
-//        val convertedDate = LocalDate.parse(date, DateTimeFormatter.ISO_DATE)
-//        var response = mJournalDao.getStreaksForDate(date)
-//        if (response == null) {
-//            response = mJournalDao.getLastStreak()
-//            val lastStreakDate = LocalDate.parse(response?.date, DateTimeFormatter.ISO_DATE)
-//            val daysDifference = ChronoUnit.DAYS.between(lastStreakDate, convertedDate)
-//            if (response == null) {
-//                response = JournalStreak(date, isJournaled = false, currentStreak = 0)
-//            }
-//        }
-//        return response
 
     suspend fun getHighestStreak(): Int {
         return mJournalDao.getHighestStreak()

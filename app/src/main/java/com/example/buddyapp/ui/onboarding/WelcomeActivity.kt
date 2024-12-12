@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.buddyapp.R
 import com.example.buddyapp.ui.authentication.AuthenticationActivity
 import com.example.buddyapp.data.ds.UserPreference
+import com.example.buddyapp.data.ds.dataStore
 import com.example.buddyapp.databinding.ActivityWelcomeBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -22,12 +23,14 @@ class WelcomeActivity : AppCompatActivity(), View.OnClickListener {
         binding = ActivityWelcomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        userPreference = UserPreference.getInstance(applicationContext.dataStore)
+
         binding.btnMulai.setOnClickListener(this)
         binding.btnSkip.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
-        CoroutineScope(Dispatchers.Main).launch {
+        CoroutineScope(Dispatchers.IO).launch {
             userPreference.setNotFirstTimeStatus()
         }
         if (v?.id == R.id.btn_mulai) {

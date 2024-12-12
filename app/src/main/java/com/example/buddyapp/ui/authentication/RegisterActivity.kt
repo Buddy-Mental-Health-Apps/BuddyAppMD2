@@ -3,10 +3,8 @@ package com.example.buddyapp.ui.authentication
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.view.WindowInsets
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
@@ -19,6 +17,7 @@ import com.example.buddyapp.data.ds.Register
 import com.example.buddyapp.data.ds.RegisterRepository
 import com.example.buddyapp.data.viewmodelfactory.RegisterViewModelFactory
 import com.example.buddyapp.databinding.ActivityRegisterBinding
+import com.example.buddyapp.helper.ViewUtils
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
@@ -31,7 +30,7 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupView()
+        ViewUtils.setupView(window, supportActionBar)
         setupAction()
         playAnimation()
 
@@ -43,15 +42,6 @@ class RegisterActivity : AppCompatActivity() {
             val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
             startActivity(intent)
         }
-    }
-
-    private fun setupView() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window.insetsController?.hide(WindowInsets.Type.statusBars())
-        } else {
-            window.insetsController?.hide(WindowInsets.Type.statusBars())
-        }
-        supportActionBar?.hide()
     }
 
     private fun setupAction() {

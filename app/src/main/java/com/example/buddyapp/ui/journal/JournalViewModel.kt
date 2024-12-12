@@ -29,6 +29,12 @@ class JournalViewModel(application: Application) : AndroidViewModel(application)
     private val _resultJournal = MutableLiveData<ResultJournal>()
     val resultJournal: LiveData<ResultJournal> get() = _resultJournal
 
+    private val _currentStreak = MutableLiveData<Int>()
+    val currentStreak: LiveData<Int> = _currentStreak
+
+    private val _highestStreak = MutableLiveData<Int>()
+    val highestStreak: LiveData<Int> = _highestStreak
+
     fun setImageUri(uri: Uri) {
         _imageUri.value = uri
     }
@@ -104,19 +110,14 @@ class JournalViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
-    fun getAllJournalsHistory(): LiveData<List<JournalEntry>> = mJournalRepository.allJournalsHistory
+    fun getAllJournalsHistory(): LiveData<List<JournalEntry>> =
+        mJournalRepository.allJournalsHistory
 
     fun addJournalHistory(date: String?, title: String?) {
         viewModelScope.launch {
             mJournalRepository.insertJournalHistory(JournalEntry(date = date, title = title))
         }
     }
-
-    private val _currentStreak = MutableLiveData<Int>()
-    val currentStreak: LiveData<Int> = _currentStreak
-
-    private val _highestStreak = MutableLiveData<Int>()
-    val highestStreak: LiveData<Int> = _highestStreak
 
     fun writeJournal(initialDate: String) {
         viewModelScope.launch {

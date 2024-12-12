@@ -5,7 +5,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.buddyapp.ui.authentication.RegisterViewModel
 import com.example.buddyapp.data.ds.RegisterRepository
 
-class RegisterViewModelFactory(private val repository: RegisterRepository) : ViewModelProvider.NewInstanceFactory() {
+class RegisterViewModelFactory(private val repository: RegisterRepository) :
+    ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -13,6 +14,7 @@ class RegisterViewModelFactory(private val repository: RegisterRepository) : Vie
             modelClass.isAssignableFrom(RegisterViewModel::class.java) -> {
                 RegisterViewModel(repository) as T
             }
+
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
     }

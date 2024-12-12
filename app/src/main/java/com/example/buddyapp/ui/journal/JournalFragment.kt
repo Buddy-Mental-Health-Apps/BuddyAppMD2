@@ -77,10 +77,12 @@ class JournalFragment : Fragment(), View.OnClickListener {
                 val intent = Intent(requireActivity(), WriteJournalActivity::class.java)
                 startActivity(intent)
             }
+
             R.id.streak_journal -> {
                 val intent = Intent(requireActivity(), HistoryJournalActivity::class.java)
                 startActivity(intent)
             }
+
             R.id.streak_journal_count -> {
                 val intent = Intent(requireActivity(), HistoryJournalActivity::class.java)
                 startActivity(intent)

@@ -2,27 +2,26 @@ package com.example.buddyapp.ui.journal
 
 import android.app.Application
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.view.WindowInsets
-import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.buddyapp.databinding.ActivityHistoryJournalBinding
+import com.example.buddyapp.helper.ViewUtils
 import com.example.buddyapp.ui.ViewModelFactory
 
 class HistoryJournalActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHistoryJournalBinding
     private val journalViewModel: JournalViewModel by viewModels {
-        ViewModelFactory.getInstance(Application()) }
+        ViewModelFactory.getInstance(Application())
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHistoryJournalBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setupView()
+        ViewUtils.setupView(window, supportActionBar)
 
         binding.rvJournalHistory.layoutManager = LinearLayoutManager(this)
 
@@ -47,24 +46,11 @@ class HistoryJournalActivity : AppCompatActivity() {
             binding.tvHighestStreak.text = highestStreak.toString()
         }
 
-        binding.btnBack.setOnClickListener{ finish() }
+        binding.btnBack.setOnClickListener { finish() }
         binding.btnWriteJournal.setOnClickListener {
             val intent = Intent(this, WriteJournalActivity::class.java)
             startActivity(intent)
             finish()
         }
-    }
-
-    private fun setupView() {
-        @Suppress("DEPRECATION")
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window.insetsController?.hide(WindowInsets.Type.statusBars())
-        } else {
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-            )
-        }
-        supportActionBar?.hide()
     }
 }

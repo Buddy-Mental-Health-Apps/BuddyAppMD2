@@ -1,5 +1,6 @@
 package com.example.buddyapp
 
+import android.Manifest
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
@@ -11,6 +12,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -26,7 +28,6 @@ import androidx.work.WorkManager
 import com.example.buddyapp.notification.NotificationWorker
 import java.util.concurrent.TimeUnit
 import kotlinx.coroutines.launch
-import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
 
@@ -43,6 +44,18 @@ class MainActivity : AppCompatActivity() {
 
         createNotificationChannel(this)
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(
+                    applicationContext, Manifest.permission.POST_NOTIFICATIONS
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                requestPermissions(
+                    arrayOf(Manifest.permission.POST_NOTIFICATIONS),
+                    notificationPermissionRequestCode
+                )
+            }
+        }
+
         userPreference = UserPreference.getInstance(applicationContext.dataStore)
 
         lifecycleScope.launch {
@@ -52,13 +65,7 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent)
                     finish()
                 } else {
-                    userPreference.getLoginTime().collect { loginTime ->
-                        val currentTime = System.currentTimeMillis()
-
-                        if (loginTime != 0L && currentTime - loginTime >= TimeUnit.HOURS.toMillis(6)) {
-                            scheduleNotification()
-                        }
-                    }
+                    scheduleNotification()
                 }
             }
         }
@@ -92,6 +99,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -119,9 +127,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun scheduleNotification() {
-        val randomDelay = Random.nextLong(TimeUnit.HOURS.toMillis(6))
         val notificationRequest = PeriodicWorkRequestBuilder<NotificationWorker>(3, TimeUnit.HOURS)
-            .setInitialDelay(randomDelay, TimeUnit.MILLISECONDS)
             .build()
 
         WorkManager.getInstance(this).enqueue(notificationRequest)
@@ -136,9 +142,10 @@ class MainActivity : AppCompatActivity() {
 
         if (requestCode == notificationPermissionRequestCode) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Izin notifikasi diberikan!", Toast.LENGTH_SHORT).show()
                 scheduleNotification()
             } else {
-                Toast.makeText(this, "Permission denied to send notifications", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Izin notifikasi ditolak.", Toast.LENGTH_SHORT).show()
             }
         }
     }

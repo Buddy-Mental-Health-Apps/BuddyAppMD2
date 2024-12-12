@@ -1,6 +1,5 @@
 package com.example.buddyapp.ui.authentication
 
-
 import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
@@ -17,7 +16,11 @@ class PasswordEditText : AppCompatEditText {
         init()
     }
 
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(
+        context,
+        attrs,
+        defStyleAttr
+    ) {
         init()
     }
 

@@ -1,13 +1,11 @@
 package com.example.buddyapp.ui.journal
 
-import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.view.WindowInsets
-import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.example.buddyapp.R
 import com.example.buddyapp.databinding.ActivityResultJournalBinding
+import com.example.buddyapp.helper.ViewUtils
 
 class ResultJournalActivity : AppCompatActivity() {
     private lateinit var binding: ActivityResultJournalBinding
@@ -16,7 +14,7 @@ class ResultJournalActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityResultJournalBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setupView()
+        ViewUtils.setupView(window, supportActionBar)
 
         val content = intent.getStringExtra(EXTRA_CONTENT) ?: ""
         val positiveWords = intent.getStringExtra(EXTRA_POSITIVE_WORDS)
@@ -25,13 +23,15 @@ class ResultJournalActivity : AppCompatActivity() {
         val negativeCount = intent.getIntExtra(EXTRA_NEGATIVE_COUNT, 0)
         binding.tvJournalContent.text = content
         if (positiveWords.isNullOrEmpty()) {
-            binding.tvListPositiveWords.text = getString(R.string.positive_words, getString(R.string.empty))
+            binding.tvListPositiveWords.text =
+                getString(R.string.positive_words, getString(R.string.empty))
         } else {
             binding.tvListPositiveWords.text = getString(R.string.positive_words, positiveWords)
         }
 
         if (negativeWords.isNullOrEmpty()) {
-            binding.tvListNegativeWords.text = getString(R.string.negative_words, getString(R.string.empty))
+            binding.tvListNegativeWords.text =
+                getString(R.string.negative_words, getString(R.string.empty))
         } else {
             binding.tvListNegativeWords.text = getString(R.string.negative_words, negativeWords)
         }
@@ -82,19 +82,6 @@ class ResultJournalActivity : AppCompatActivity() {
             binding.tvCloseSeeMore.visibility = View.GONE
         }
         binding.btnBack.setOnClickListener { finish() }
-    }
-
-    private fun setupView() {
-        @Suppress("DEPRECATION")
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window.insetsController?.hide(WindowInsets.Type.statusBars())
-        } else {
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-            )
-        }
-        supportActionBar?.hide()
     }
 
     companion object {

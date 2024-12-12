@@ -3,15 +3,12 @@ package com.example.buddyapp.ui.journal
 import android.app.Application
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.WindowInsets
-import android.view.WindowManager
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
@@ -26,6 +23,7 @@ import com.example.buddyapp.R
 import com.example.buddyapp.data.local.Journal
 import com.example.buddyapp.databinding.ActivityWriteJournalBinding
 import com.example.buddyapp.helper.DateHelper
+import com.example.buddyapp.helper.ViewUtils
 import com.example.buddyapp.ui.ViewModelFactory
 import com.yalantis.ucrop.UCrop
 import java.io.File
@@ -33,7 +31,8 @@ import java.io.File
 class WriteJournalActivity : AppCompatActivity() {
     private lateinit var binding: ActivityWriteJournalBinding
     private val journalViewModel: JournalViewModel by viewModels {
-        ViewModelFactory.getInstance(Application()) }
+        ViewModelFactory.getInstance(Application())
+    }
 
     private var currentImageUri: Uri? = null
     private var journal: Journal? = null
@@ -44,17 +43,19 @@ class WriteJournalActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityWriteJournalBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setupView()
+        ViewUtils.setupView(window, supportActionBar)
 
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 if (binding.etJournalTitle.text.toString().isEmpty() &&
                     binding.etJournalContent.text.toString().isEmpty() &&
-                    currentImageUri == null) {
+                    currentImageUri == null
+                ) {
                     finish()
                 } else {
                     if (isUpdate) {
-                        val intent = Intent(this@WriteJournalActivity, DetailJournalActivity::class.java)
+                        val intent =
+                            Intent(this@WriteJournalActivity, DetailJournalActivity::class.java)
                         intent.putExtra(DetailJournalActivity.EXTRA_JOURNAL, journal)
                         startActivity(intent)
                         finish()
@@ -89,7 +90,8 @@ class WriteJournalActivity : AppCompatActivity() {
         backButton.setOnClickListener {
             if (binding.etJournalTitle.text.toString().isEmpty() &&
                 binding.etJournalContent.text.toString().isEmpty() &&
-                currentImageUri == null) {
+                currentImageUri == null
+            ) {
                 this.onBackPressedDispatcher.onBackPressed()
             } else {
                 showBackAlertDialog()
@@ -134,12 +136,15 @@ class WriteJournalActivity : AppCompatActivity() {
             title.isEmpty() -> {
                 binding.etJournalTitle.error = getString(R.string.empty_journal_title)
             }
+
             description.isEmpty() -> {
                 binding.etJournalContent.error = getString(R.string.empty_journal_description)
             }
+
             image.isEmpty() -> {
                 showToast(getString(R.string.empty_journal_image))
             }
+
             else -> {
                 showLoading(true)
                 if (isUpdate) {
@@ -183,7 +188,14 @@ class WriteJournalActivity : AppCompatActivity() {
             val imageUri = currentImageUri.toString()
             val initialTimestamp = System.currentTimeMillis()
             val isAnalyzed = false
-            val journal = Journal(id = journalId, title = title, description = description, image = imageUri, initialTimestamp = initialTimestamp, isAnalyzed = isAnalyzed)
+            val journal = Journal(
+                id = journalId,
+                title = title,
+                description = description,
+                image = imageUri,
+                initialTimestamp = initialTimestamp,
+                isAnalyzed = isAnalyzed
+            )
 
             showLoading(false)
             val intent = Intent(this, DetailJournalActivity::class.java)
@@ -298,19 +310,6 @@ class WriteJournalActivity : AppCompatActivity() {
 
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
-
-    private fun setupView() {
-        @Suppress("DEPRECATION")
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window.insetsController?.hide(WindowInsets.Type.statusBars())
-        } else {
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-            )
-        }
-        supportActionBar?.hide()
     }
 
     companion object {

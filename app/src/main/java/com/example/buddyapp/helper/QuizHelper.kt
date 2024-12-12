@@ -1,4 +1,5 @@
 package com.example.buddyapp.helper
+
 import android.content.Context
 import com.example.buddyapp.ml.Surveyy
 import org.tensorflow.lite.DataType
@@ -23,7 +24,6 @@ class QuizHelper(private val context: Context) {
         val outputs = model.process(inputFeature0)
         val predictions = outputs.outputFeature0AsTensorBuffer.floatArray
         println("Raw Predictions: ${predictions.joinToString()}")
-
 
         // Tutup model untuk menghemat resource
         model.close()

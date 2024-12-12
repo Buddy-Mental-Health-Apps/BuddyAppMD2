@@ -4,8 +4,8 @@ import androidx.recyclerview.widget.DiffUtil
 import com.example.buddyapp.data.local.Journal
 
 class JournalDiffCallback(
-private val oldJournalList: List<Journal>,
-private val newJournalList: List<Journal>
+    private val oldJournalList: List<Journal>,
+    private val newJournalList: List<Journal>
 ) : DiffUtil.Callback() {
     override fun getOldListSize(): Int = oldJournalList.size
     override fun getNewListSize(): Int = newJournalList.size

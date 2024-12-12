@@ -24,7 +24,10 @@ class RegisterViewModel(private val registerRepository: RegisterRepository) : Vi
                 Log.d("RegisterViewModel", "Respons diterima: ${response.message}")
             } catch (e: Exception) {
                 Log.e("RegisterViewModel", "Error: ${e.message}")
-                _registerResponse.value = RegisterResponse(error = true, message = "Terjadi kesalahan saat register: ${e.message}")
+                _registerResponse.value = RegisterResponse(
+                    error = true,
+                    message = "Terjadi kesalahan saat register: ${e.message}"
+                )
             }
         }
     }

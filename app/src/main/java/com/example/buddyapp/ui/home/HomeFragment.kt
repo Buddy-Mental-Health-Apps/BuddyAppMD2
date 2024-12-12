@@ -30,7 +30,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private lateinit var adapter: HistoryQuizAdapter
     private lateinit var userPreference: UserPreference
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -43,7 +42,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             val name = userPreference.getName().first()
 
             val greetingTextView = root.findViewById<TextView>(R.id.greetingText)
-            greetingTextView.text =  "Hi, $name!"
+            greetingTextView.text = "Hi, $name!"
         }
 
         val testButton = root.findViewById<Button>(R.id.testButton)
@@ -51,7 +50,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             val intent = Intent(requireContext(), QuizActivity::class.java)
             startActivity(intent)
         }
-
 
         setupIcons(root)
         setupHistoryRecyclerView(root)
@@ -65,15 +63,24 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
 
         root.findViewById<ImageView>(R.id.normalIcon).setOnClickListener {
-            Toast.makeText(requireContext(), "Coba lakukan aktivitas baru yuk!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Coba lakukan aktivitas baru yuk!", Toast.LENGTH_SHORT)
+                .show()
         }
 
         root.findViewById<ImageView>(R.id.anxiousIcon).setOnClickListener {
-            Toast.makeText(requireContext(), "Ada apa? yuk tulis jurnal hari ini!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                requireContext(),
+                "Ada apa? yuk tulis jurnal hari ini!",
+                Toast.LENGTH_SHORT
+            ).show()
         }
 
         root.findViewById<ImageView>(R.id.sadIcon).setOnClickListener {
-            Toast.makeText(requireContext(), "Percayalah semua akan baik-baik saja", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                requireContext(),
+                "Percayalah semua akan baik-baik saja",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
@@ -81,7 +88,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         val recyclerView = root.findViewById<RecyclerView>(R.id.historyRecyclerView)
         val noDataImageView = root.findViewById<ImageView>(R.id.historyNotFoundImage)
 
-        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, true)
+        recyclerView.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, true)
 
         val quizDao = BuddyRoomDatabase.getDatabase(requireContext()).quizDao()
 

@@ -3,12 +3,9 @@ package com.example.buddyapp.ui.journal
 import android.app.Application
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.view.WindowInsets
-import android.view.WindowManager
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
@@ -18,6 +15,7 @@ import com.example.buddyapp.R
 import com.example.buddyapp.data.local.Journal
 import com.example.buddyapp.data.local.ResultJournal
 import com.example.buddyapp.databinding.ActivityDetailJournalBinding
+import com.example.buddyapp.helper.ViewUtils
 import com.example.buddyapp.helper.journalAnalyzerHelper
 import com.example.buddyapp.ui.ViewModelFactory
 
@@ -38,7 +36,7 @@ class DetailJournalActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailJournalBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setupView()
+        ViewUtils.setupView(window, supportActionBar)
 
         journal = intent.getParcelableExtra(EXTRA_JOURNAL)
 
@@ -190,7 +188,6 @@ class DetailJournalActivity : AppCompatActivity() {
         )
         journalViewModel.saveResultJournal(resultJournal)
 
-
         val intent = Intent(this, ResultJournalActivity::class.java).apply {
             putExtra(ResultJournalActivity.EXTRA_CONTENT, binding.tvJournalContent.text.toString())
             putExtra(ResultJournalActivity.EXTRA_POSITIVE_RESULT, positivePercentage)
@@ -222,19 +219,6 @@ class DetailJournalActivity : AppCompatActivity() {
         btnCancel.setOnClickListener { alertDialog.dismiss() }
 
         alertDialog.show()
-    }
-
-    private fun setupView() {
-        @Suppress("DEPRECATION")
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window.insetsController?.hide(WindowInsets.Type.statusBars())
-        } else {
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-            )
-        }
-        supportActionBar?.hide()
     }
 
     private fun showLoading(isLoading: Boolean) {

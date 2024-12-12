@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.buddyapp.R
 import com.example.buddyapp.data.local.JournalEntry
 
-class HistoryJournalAdapter(private val history: List<JournalEntry>) : RecyclerView.Adapter<HistoryJournalAdapter.ViewHolder>() {
+class HistoryJournalAdapter(private val history: List<JournalEntry>) :
+    RecyclerView.Adapter<HistoryJournalAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val dateTextView: TextView = itemView.findViewById(R.id.tv_item_date)
@@ -16,7 +17,8 @@ class HistoryJournalAdapter(private val history: List<JournalEntry>) : RecyclerV
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_journal_history, parent, false)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_journal_history, parent, false)
         return ViewHolder(view)
     }
 

@@ -5,7 +5,11 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Quiz::class, Journal::class, ResultJournal::class, Medicine::class, JournalEntry::class, JournalStreak::class], version = 1, exportSchema = false)
+@Database(
+    entities = [Quiz::class, Journal::class, ResultJournal::class, Medicine::class, JournalEntry::class, JournalStreak::class],
+    version = 1,
+    exportSchema = false
+)
 abstract class BuddyRoomDatabase : RoomDatabase() {
     abstract fun journalDao(): JournalDao
     abstract fun quizDao(): QuizDao
@@ -19,8 +23,10 @@ abstract class BuddyRoomDatabase : RoomDatabase() {
         fun getDatabase(context: Context): BuddyRoomDatabase {
             if (INSTANCE == null) {
                 synchronized(BuddyRoomDatabase::class.java) {
-                    INSTANCE = Room.databaseBuilder(context.applicationContext,
-                        BuddyRoomDatabase::class.java, "buddy_database")
+                    INSTANCE = Room.databaseBuilder(
+                        context.applicationContext,
+                        BuddyRoomDatabase::class.java, "buddy_database"
+                    )
                         .build()
                 }
             }

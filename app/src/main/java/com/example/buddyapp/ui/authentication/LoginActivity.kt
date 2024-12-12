@@ -3,11 +3,8 @@ package com.example.buddyapp.ui.authentication
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.view.WindowInsets
-import android.view.WindowManager
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -20,8 +17,8 @@ import com.example.buddyapp.data.ds.UserPreference
 import com.example.buddyapp.data.ds.dataStore
 import com.example.buddyapp.data.viewmodelfactory.ViewModelFactory
 import com.example.buddyapp.databinding.ActivityLoginBinding
+import com.example.buddyapp.helper.ViewUtils
 import kotlinx.coroutines.launch
-
 
 class LoginActivity : AppCompatActivity() {
     private val viewModel by viewModels<LoginViewModel> {
@@ -37,7 +34,7 @@ class LoginActivity : AppCompatActivity() {
 
         userPreference = UserPreference.getInstance(applicationContext.dataStore)
 
-        setupView()
+        ViewUtils.setupView(window, supportActionBar)
         setupAction()
         playAnimation()
 
@@ -49,19 +46,6 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
             startActivity(intent)
         }
-    }
-
-    private fun setupView() {
-        @Suppress("DEPRECATION")
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window.insetsController?.hide(WindowInsets.Type.statusBars())
-        } else {
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-            )
-        }
-        supportActionBar?.hide()
     }
 
     private fun setupAction() {
@@ -101,15 +85,21 @@ class LoginActivity : AppCompatActivity() {
                         userPreference.saveName(userModel.name)
                         viewModel.apiMessage.collect { message ->
                             message?.let {
-                                Toast.makeText(this@LoginActivity, message, Toast.LENGTH_LONG).show()
+                                Toast.makeText(this@LoginActivity, message, Toast.LENGTH_LONG)
+                                    .show()
                                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                                intent.flags =
+                                    Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                                 startActivity(intent)
                                 finish()
                             }
                         }
                     }.onFailure { exception ->
-                        showAlertDialog(exception.message ?: "Terjadi kesalahan", "Password atau Email Salah, Silakan Coba Lagi.", false)
+                        showAlertDialog(
+                            exception.message ?: "Terjadi kesalahan",
+                            "Password atau Email Salah, Silakan Coba Lagi.",
+                            false
+                        )
                         binding.loginButton.isEnabled = true
                         showLoading(false)
                     }
@@ -119,7 +109,12 @@ class LoginActivity : AppCompatActivity() {
     }
 
 
-    private fun showAlertDialog(title: String, message: String, isSuccess: Boolean, onPositiveAction: (() -> Unit)? = null) {
+    private fun showAlertDialog(
+        title: String,
+        message: String,
+        isSuccess: Boolean,
+        onPositiveAction: (() -> Unit)? = null
+    ) {
         showLoading(false)
         AlertDialog.Builder(this).apply {
             setTitle(title)
@@ -145,12 +140,18 @@ class LoginActivity : AppCompatActivity() {
         }.start()
 
         val title = ObjectAnimator.ofFloat(binding.titleTextView, View.ALPHA, 1f).setDuration(100)
-        val emailTextView = ObjectAnimator.ofFloat(binding.emailTextView, View.ALPHA, 1f).setDuration(100)
-        val emailEditTextLayout = ObjectAnimator.ofFloat(binding.emailEditTextLayout, View.ALPHA, 1f).setDuration(100)
-        val passwordTextView = ObjectAnimator.ofFloat(binding.passwordTextView, View.ALPHA, 1f).setDuration(100)
-        val passwordEditTextLayout = ObjectAnimator.ofFloat(binding.passwordEditTextLayout, View.ALPHA, 1f).setDuration(100)
-        val infoTextViewLogin = ObjectAnimator.ofFloat(binding.infoTextViewLogin, View.ALPHA, 1f).setDuration(100)
-        val infoTextViewLogin2 = ObjectAnimator.ofFloat(binding.infoTextViewLogin2, View.ALPHA, 1f).setDuration(100)
+        val emailTextView =
+            ObjectAnimator.ofFloat(binding.emailTextView, View.ALPHA, 1f).setDuration(100)
+        val emailEditTextLayout =
+            ObjectAnimator.ofFloat(binding.emailEditTextLayout, View.ALPHA, 1f).setDuration(100)
+        val passwordTextView =
+            ObjectAnimator.ofFloat(binding.passwordTextView, View.ALPHA, 1f).setDuration(100)
+        val passwordEditTextLayout =
+            ObjectAnimator.ofFloat(binding.passwordEditTextLayout, View.ALPHA, 1f).setDuration(100)
+        val infoTextViewLogin =
+            ObjectAnimator.ofFloat(binding.infoTextViewLogin, View.ALPHA, 1f).setDuration(100)
+        val infoTextViewLogin2 =
+            ObjectAnimator.ofFloat(binding.infoTextViewLogin2, View.ALPHA, 1f).setDuration(100)
         val login = ObjectAnimator.ofFloat(binding.loginButton, View.ALPHA, 1f).setDuration(100)
 
         AnimatorSet().apply {
