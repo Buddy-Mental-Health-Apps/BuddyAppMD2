@@ -1,6 +1,7 @@
 **Buddy: Mental Health Awareness Application**
 
 _Description_
+
 The Buddy application is an application that focuses on helping reduce the number of teenagers in Indonesia experiencing mental health issues. 
 In the application there are 3 main features being developed, namely **a mental health test feature, a medicines information feature, and a journal feature**.
 
